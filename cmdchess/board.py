@@ -7,7 +7,15 @@ from .config import configurations
 
 
 class Square:
-    """Squares makes up board layout. At any point of time, a square can either be occupied by a piece or be vacant"""
+    """Squares makes up board layout. At any point of time, a square can either be occupied by a piece or be vacant
+    
+    Attributes
+    ----------
+    position
+    color
+    occupant
+
+    """
 
     def __init__(self, position, color):
         """Initialization of a square instance
@@ -93,16 +101,22 @@ class Board:
         return iter(self.__slots__)
 
     def keys(self):
-        """Return keys"""
+        """Return keys
+        
+        """
         return self.__slots__
 
     def items(self):
-        """Return all items"""
+        """Return all items
+        
+        """
         for attribute in self.__slots__:
             yield attribute, getattr(self, attribute)
 
     def display_layout(self):
-        """Display current state of the board"""
+        """Display current state of the board
+        
+        """
         for square in self.__slots__:
             if square[0] == 'H':
                 print(self[square])
