@@ -1,4 +1,5 @@
 class Piece:
+    """Each piece is stored in tiles - which in turn is stored in a board layout attribute"""
     def __init__(self, color):
         self.color = color
         self.history = None

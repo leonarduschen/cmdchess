@@ -2,18 +2,24 @@ from piece import King, Queen, Bishop, Knight, Rook, Pawn
 
 
 class Tile:
-    def __init__(self, position, occupancy):
+    """Tiles makes up board layout. At any point of time, a tile can either be occupied by a piece or be vacant"""
+
+    def __init__(self, position):
         self.position = position
-        self.occupancy = occupancy
+        self.occupant = None
+        self.notation = "-"
 
     def place_piece(self, piece):
-        self.occupancy = piece
+        self.occupant = piece
+        self.notation = piece.notation
 
     def remove_piece(self):
-        self.occupancy = None
+        self.occupant = None
+        self.notation = "-"
 
 
 class Board:
+    """A board layout consists of 64 tiles stored in the attribute layout as a dictionary. A tile in turn can be occupied by a piece"""
     def __init__(self):
         self.layout = self.generate_empty_layout()
 
@@ -21,7 +27,7 @@ class Board:
         empty_layout = dict()
         for ranks in ['1', '2', '3', '4', '5', '6', '7', '8']:
             for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
-                empty_layout[files + ranks] = Tile(files + ranks, None)
+                empty_layout[files + ranks] = Tile(files + ranks)
         return empty_layout
 
     def initialize_layout(self):
@@ -62,8 +68,9 @@ class Board:
         self.layout['H8'].place_piece(Rook('Black'))
 
     def display_layout(self):
-        for ranks in ['1', '2', '3', '4', '5', '6', '7', '8']:
+        for ranks in ['8', '7', '6', '5', '4', '3', '2', '1']:
             for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
-                print(f"{key} ", end="")
-                if key[0] == 'H':
+                key = files + ranks
+                print(f"{self.layout[key].notation} ", end="")
+                if files == 'H':
                     print("")
