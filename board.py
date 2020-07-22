@@ -1,25 +1,10 @@
 from piece import King, Queen, Bishop, Knight, Rook, Pawn
-
-
-class Tile:
-    """Tiles makes up board layout. At any point of time, a tile can either be occupied by a piece or be vacant"""
-
-    def __init__(self, position):
-        self.position = position
-        self.occupant = None
-        self.notation = "-"
-
-    def place_piece(self, piece):
-        self.occupant = piece
-        self.notation = piece.notation
-
-    def remove_piece(self):
-        self.occupant = None
-        self.notation = "-"
+from tile import Tile
 
 
 class Board:
     """A board layout consists of 64 tiles stored in the attribute layout as a dictionary. A tile in turn can be occupied by a piece"""
+
     def __init__(self):
         self.layout = self.generate_empty_layout()
 
@@ -30,7 +15,7 @@ class Board:
                 empty_layout[files + ranks] = Tile(files + ranks)
         return empty_layout
 
-    def initialize_layout(self):
+    def initialize_layout(self, algebraic = True):
         self.layout['A1'].place_piece(Rook('White'))
         self.layout['B1'].place_piece(Knight('White'))
         self.layout['C1'].place_piece(Bishop('White'))
