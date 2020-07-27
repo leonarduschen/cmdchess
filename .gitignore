@@ -1,5 +1,5 @@
 venv
-.mypy_cache
+dev.txt
 .vscode
 __pycache__
-throwaway.py
+throwaway*
