@@ -4,7 +4,7 @@ class Tile:
     def __init__(self, position):
         self.position = position
         self.occupant = None
-        self.notation = "-"
+        self.notation = "--"
 
     def place_piece(self, piece):
         self.occupant = piece
@@ -12,4 +12,4 @@ class Tile:
 
     def remove_piece(self):
         self.occupant = None
-        self.notation = "-"
+        self.notation = "--"

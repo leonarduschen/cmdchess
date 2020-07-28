@@ -1,3 +1,4 @@
+import os
 from board import Board
 from piece import King, Queen, Bishop, Knight, Rook, Pawn
 from tile import Tile
@@ -38,9 +39,12 @@ class Game:
 
 
 if __name__ == "__main__":
-    test_game = Game()
-    test_game.board.display_layout()
-    test_game.make_move("E2", "E4", verbose=True)
-    test_game.board.display_layout()
-    test_game.make_move("E7", "E5", verbose=True)
-    test_game.board.display_layout()
+    game = Game()
+    game.board.display_layout()
+    while True:
+        current = input("Move from: ")
+        destination = input("Move to: ")
+        os.system('cls')
+        print(f'Moving {current} to {destination}')
+        game.make_move(current, destination, verbose = True)
+        game.board.display_layout()

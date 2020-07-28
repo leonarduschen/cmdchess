@@ -37,7 +37,7 @@ class King(Piece):
 
     @property
     def notation(self):
-        return 'K'
+        return self.color + 'K'
 
     @property
     def hopping(self):
@@ -66,7 +66,7 @@ class Queen(Piece):
 
     @property
     def notation(self):
-        return 'Q'
+        return self.color + 'Q'
 
     @property
     def hopping(self):
@@ -107,7 +107,7 @@ class Bishop(Piece):
 
     @property
     def notation(self):
-        return 'B'
+        return self.color + 'B'
 
     @property
     def hopping(self):
@@ -140,7 +140,7 @@ class Knight(Piece):
 
     @property
     def notation(self):
-        return 'N'
+        return self.color + 'N'
 
     @property
     def hopping(self):
@@ -165,7 +165,7 @@ class Rook(Piece):
 
     @property
     def notation(self):
-        return 'R'
+        return self.color + 'R'
 
     @property
     def hopping(self):
@@ -198,7 +198,7 @@ class Pawn(Piece):
     
     @property
     def notation(self):
-        return 'P'
+        return self.color + 'P'
 
     @property
     def hopping(self):
