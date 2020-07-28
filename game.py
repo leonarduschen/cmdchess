@@ -1,7 +1,5 @@
 import os
 from board import Board
-from piece import King, Queen, Bishop, Knight, Rook, Pawn
-from tile import Tile
 
 
 class Game:
@@ -46,5 +44,5 @@ if __name__ == "__main__":
         destination = input("Move to: ")
         os.system('cls')
         print(f'Moving {current} to {destination}')
-        game.make_move(current, destination, verbose = True)
+        game.make_move(current, destination, verbose=True)
         game.board.display_layout()
