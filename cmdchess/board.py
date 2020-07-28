@@ -1,5 +1,6 @@
-from piece import King, Queen, Bishop, Knight, Rook, Pawn
-from tile import Tile
+from colorama import Fore, Back, Style
+from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
+from cmdchess.tile import Tile
 
 
 class Board:
@@ -51,14 +52,32 @@ class Board:
         self.layout['F8'].place_piece(Bishop('B'))
         self.layout['G8'].place_piece(Knight('B'))
         self.layout['H8'].place_piece(Rook('B'))
+    
+    def __get_colored_notation(self, key):
+        if self.layout[key].occupant is None:
+            return f"{self.layout[key].notation}"
 
+        elif self.layout[key].occupant.color == 'W':
+            return Fore.YELLOW + f"{self.layout[key].notation}"
+        else:
+            return Fore.BLUE + f"{self.layout[key].notation}"
+    
     def display_layout(self):
+        color_idx = 0
         for ranks in ['8', '7', '6', '5', '4', '3', '2', '1']:
             for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
                 key = files + ranks
-                print(f"{self.layout[key].notation} ", end="")
+                if color_idx % 2 == 0:
+                    print(Back.WHITE, self.__get_colored_notation(key), end=" ")
+                else:
+                    print(Back.BLACK, self.__get_colored_notation(key), end=" ")
                 if files == 'H':
-                    print("")
+                    print(Style.RESET_ALL, "|")
+                    color_idx += 1
+                color_idx += 1
+    
+
+
 
     @staticmethod
     def to_cartesian(algebraic):

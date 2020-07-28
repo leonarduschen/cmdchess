@@ -1,5 +1,5 @@
 import os
-from board import Board
+from cmdchess.board import Board
 
 
 class Game:
@@ -38,10 +38,13 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
-    game.board.display_layout()
     while True:
+        os.system('cls')
+        game.board.display_layout()
+        print(" ")
         current = input("Move from: ")
         destination = input("Move to: ")
+
         os.system('cls')
         print(f'Moving {current} to {destination}')
         game.make_move(current, destination, verbose=True)
