@@ -198,7 +198,7 @@ class Pawn(Piece):
     
     @property
     def notation(self):
-        return 'P'
+        return chr(9650)
 
     @property
     def hopping(self):

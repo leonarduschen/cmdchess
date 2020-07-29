@@ -58,9 +58,9 @@ class Board:
             return f"{self.layout[key].notation}"
 
         elif self.layout[key].occupant.color == 'W':
-            return Fore.WHITE + Style.BRIGHT + f"{self.layout[key].notation}"
+            return Fore.LIGHTWHITE_EX + Style.BRIGHT + f"{self.layout[key].notation}"
         else:
-            return Fore.BLACK + Style.BRIGHT + f"{self.layout[key].notation}"
+            return Fore.LIGHTBLACK_EX + Style.BRIGHT + f"{self.layout[key].notation}"
     
     def display_layout(self):
         color_idx = 0
@@ -68,11 +68,11 @@ class Board:
             for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
                 key = files + ranks
                 if color_idx % 2 == 0:
-                    print(Back.WHITE, self.__get_colored_notation(key), end=" ")
-                else:
                     print(Back.BLACK, self.__get_colored_notation(key), end=" ")
+                else:
+                    print(Back.WHITE, self.__get_colored_notation(key), end=" ")
                 if files == 'H':
-                    print(Style.RESET_ALL, "|")
+                    print(Style.RESET_ALL, "")
                     color_idx += 1
                 color_idx += 1
     
