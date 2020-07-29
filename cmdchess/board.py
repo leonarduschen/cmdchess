@@ -58,9 +58,9 @@ class Board:
             return f"{self.layout[key].notation}"
 
         elif self.layout[key].occupant.color == 'W':
-            return Fore.YELLOW + f"{self.layout[key].notation}"
+            return Fore.WHITE + Style.BRIGHT + f"{self.layout[key].notation}"
         else:
-            return Fore.BLUE + f"{self.layout[key].notation}"
+            return Fore.BLACK + Style.BRIGHT + f"{self.layout[key].notation}"
     
     def display_layout(self):
         color_idx = 0
