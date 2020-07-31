@@ -1,10 +1,14 @@
 import os
 from cmdchess.board import Board
+from colorama import Fore, Back, Style
 
 
 class Game:
     def __init__(self):
-        self.board = Board()
+        self.board = Board(
+            board_color=(Back.WHITE, Back.BLACK),
+            piece_color=(Fore.LIGHTWHITE_EX + Style.BRIGHT, Fore.LIGHTBLACK_EX + Style.BRIGHT)
+        )
         self.board.generate_standard_layout()
 
     def make_move(self, current, destination, verbose=False):
