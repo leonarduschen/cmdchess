@@ -16,5 +16,10 @@ setup(
     author_email = 'leonardus.chen@gmail.com',
     url='https://github.com/simple-spherical-cow/cmdchess',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    entry_points={  # Optional
+        'console_scripts': [
+            'cmdchess=cmdchess:cmdchess',
+        ],
+    },
 )
