@@ -1,6 +1,40 @@
-from colorama import Style
 from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess.tile import Tile
+from cmdchess import light_tiles, dark_tiles
+from colorama import Style
+
+class Tile:
+    """Tiles makes up board layout. At any point of time, a tile can either be occupied by a piece or be vacant"""
+
+    def __init__(self, position, color):
+        self._position = position
+        self._color = color
+        self._occupant = None
+        
+    def __str__(self):
+        if self.color == 'light':
+            background = light_tiles
+        else:
+            background = dark_tiles
+        
+        if self.occupant is None:
+            return background + " "
+        return background + str(self.occupant)
+
+    @property
+    def position(self):
+        return self._position
+
+    @property
+    def color(self):
+        return self._color
+
+    @property
+    def occupant(self):
+        return self._occupant
+
+    @occupant.setter
+    def occupant(self, piece):
+        self._occupant = piece
 
 
 class Board:
@@ -11,81 +45,29 @@ class Board:
     layout (dict): Contains tile objects
     """
 
-    def __init__(self, **kwargs):
-        self.layout = self.__generate_empty_layout()
-        self.board_white, self.board_black = kwargs.get('board_color', None)
-        self.piece_white, self.piece_black = kwargs.get('piece_color', None)
+    def __init__(self):
+        self.layout = self._initialize_layout()
 
-    @staticmethod
-    def __generate_empty_layout():
-        empty_layout = dict()
-        for ranks in ['1', '2', '3', '4', '5', '6', '7', '8']:
-            for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
-                empty_layout[files + ranks] = Tile(files + ranks)
-        return empty_layout
+    def _initialize_layout(self):
+        layout = dict()
+        color = ['dark','light']
+        idx = 0
 
-    def generate_standard_layout(self):
-        self.layout['A1'].place_piece(Rook('W'))
-        self.layout['B1'].place_piece(Knight('W'))
-        self.layout['C1'].place_piece(Bishop('W'))
-        self.layout['D1'].place_piece(Queen('W'))
-        self.layout['E1'].place_piece(King('W'))
-        self.layout['F1'].place_piece(Bishop('W'))
-        self.layout['G1'].place_piece(Knight('W'))
-        self.layout['H1'].place_piece(Rook('W'))
-
-        self.layout['A2'].place_piece(Pawn('W'))
-        self.layout['B2'].place_piece(Pawn('W'))
-        self.layout['C2'].place_piece(Pawn('W'))
-        self.layout['D2'].place_piece(Pawn('W'))
-        self.layout['E2'].place_piece(Pawn('W'))
-        self.layout['F2'].place_piece(Pawn('W'))
-        self.layout['G2'].place_piece(Pawn('W'))
-        self.layout['H2'].place_piece(Pawn('W'))
-
-        self.layout['A7'].place_piece(Pawn('B'))
-        self.layout['B7'].place_piece(Pawn('B'))
-        self.layout['C7'].place_piece(Pawn('B'))
-        self.layout['D7'].place_piece(Pawn('B'))
-        self.layout['E7'].place_piece(Pawn('B'))
-        self.layout['F7'].place_piece(Pawn('B'))
-        self.layout['G7'].place_piece(Pawn('B'))
-        self.layout['H7'].place_piece(Pawn('B'))
-
-        self.layout['A8'].place_piece(Rook('B'))
-        self.layout['B8'].place_piece(Knight('B'))
-        self.layout['C8'].place_piece(Bishop('B'))
-        self.layout['D8'].place_piece(Queen('B'))
-        self.layout['E8'].place_piece(King('B'))
-        self.layout['F8'].place_piece(Bishop('B'))
-        self.layout['G8'].place_piece(Knight('B'))
-        self.layout['H8'].place_piece(Rook('B'))
-
-    def __get_colored_notation(self, key):
-        if self.layout[key].occupant is None:
-            return f"{self.layout[key].notation}"
-        if self.layout[key].occupant.color == 'W':
-            return self.piece_white + f"{self.layout[key].notation}"
-        if self.layout[key].occupant.color == 'B':
-            return self.piece_black + f"{self.layout[key].notation}"
-        return None
+        for rank_ in ['1', '2', '3', '4', '5', '6', '7', '8']:
+            idx += 1
+            for file_ in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
+                idx += 1
+                layout[file_ + rank_] = Tile(file_ + rank_, color[idx%2])
+        return layout
 
     def display_layout(self):
         color_idx = 0
-        for ranks in ['8', '7', '6', '5', '4', '3', '2', '1']:
-            for files in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
-
-                key = files + ranks
-
+        for rank_ in ['8', '7', '6', '5', '4', '3', '2', '1']:
+            for file_ in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
                 if color_idx % 2 == 0:
-                    print(self.board_black, self.__get_colored_notation(key), end=" ")
-                else:
-                    print(self.board_white, self.__get_colored_notation(key), end=" ")
-
-                if files == 'H':
+                    print(" " + self.layout[file_ + rank_], end=" ")
+                if file_ == 'H':
                     print(Style.RESET_ALL, "")
-                    color_idx += 1
-                color_idx += 1
 
     @staticmethod
     def to_cartesian(algebraic):
@@ -120,3 +102,5 @@ class Board:
         rank = str(cartesian[1])
 
         return files + rank
+
+

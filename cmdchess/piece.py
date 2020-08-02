@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from cmdchess import piece_display
 
 
 class Piece(ABC):
@@ -8,6 +9,9 @@ class Piece(ABC):
         self._color = color
         self.history = None
 
+    def __str__(self):
+        return piece_display[self.color + self.notation]
+
     @property
     def color(self):
         return self._color
@@ -16,6 +20,9 @@ class Piece(ABC):
     @abstractmethod
     def notation(self):
         pass
+    
+    @property
+    @abstractmethod
 
     @property
     @abstractmethod
@@ -37,7 +44,7 @@ class King(Piece):
 
     @property
     def notation(self):
-        return 'K'
+        return self.color + 'K'
 
     @property
     def hopping(self):
@@ -66,7 +73,7 @@ class Queen(Piece):
 
     @property
     def notation(self):
-        return 'Q'
+        return self.color + 'Q'
 
     @property
     def hopping(self):
@@ -107,7 +114,7 @@ class Bishop(Piece):
 
     @property
     def notation(self):
-        return 'B'
+        return self.color + 'B'
 
     @property
     def hopping(self):
@@ -140,7 +147,7 @@ class Knight(Piece):
 
     @property
     def notation(self):
-        return 'N'
+        return self.color + 'N'
 
     @property
     def hopping(self):
@@ -165,7 +172,7 @@ class Rook(Piece):
 
     @property
     def notation(self):
-        return 'R'
+        return self.color + 'R'
 
     @property
     def hopping(self):
@@ -198,7 +205,7 @@ class Pawn(Piece):
     
     @property
     def notation(self):
-        return chr(9650)
+        return self.color + 'P'
 
     @property
     def hopping(self):
