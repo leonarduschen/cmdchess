@@ -1,4 +1,4 @@
 from cmdchess.game import main
 
-def cmdchess():
+def playchess():
     main()

@@ -1,11 +1,11 @@
 from colorama import Fore, Back, Style
 
 #Unicode Console
-unicode_console = False
+unicode_console = True
 
-#Tile Settings
-light_tiles = Back.WHITE
-dark_tiles = Back.BLACK
+#Square color settings
+LIGHTSQR = Back.WHITE
+DARKSQR = Back.BLACK
 
 #Piece display settings
 ASCII_WHITE = Style.BRIGHT + Fore.LIGHTWHITE_EX
@@ -16,13 +16,13 @@ ASCII = {
     'WB': ASCII_WHITE + 'B',
     'WN': ASCII_WHITE + 'N',
     'WR': ASCII_WHITE + 'R',
-    'WP': ASCII_WHITE + chr(960),
+    'WP': ASCII_WHITE + chr(9650),
     'BK': ASCII_BLACK + 'K',
     'BQ': ASCII_BLACK + 'Q',
     'BB': ASCII_BLACK + 'B',
     'BN': ASCII_BLACK + 'N',
     'BR': ASCII_BLACK + 'R',
-    'BP': ASCII_BLACK + chr(960)
+    'BP': ASCII_BLACK + chr(9650)
 }
 
 UNICODE_COLOR = Style.BRIGHT + Fore.LIGHTBLACK_EX

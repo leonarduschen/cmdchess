@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from cmdchess.config import piece_display
+from cmdchess.displayconfig import piece_display
 
 
 class Piece(ABC):
@@ -10,7 +10,7 @@ class Piece(ABC):
         self.history = None
 
     def __str__(self):
-        return piece_display[self.color + self.notation]
+        return piece_display[self.notation]
 
     @property
     def color(self):
@@ -20,9 +20,6 @@ class Piece(ABC):
     @abstractmethod
     def notation(self):
         pass
-    
-    @property
-    @abstractmethod
 
     @property
     @abstractmethod

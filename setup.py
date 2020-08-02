@@ -8,7 +8,7 @@ with open('LICENSE') as f:
 
 setup(
     name='cmdchess',
-    version='0.1.0',
+    version='0.1.1',
     description='Command-line Application Chess',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(exclude=('tests', 'docs')),
     entry_points={  # Optional
         'console_scripts': [
-            'cmdchess=cmdchess:cmdchess',
+            'cmdchess=cmdchess:playchess',
         ],
     },
 )

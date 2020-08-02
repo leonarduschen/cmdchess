@@ -1,5 +1,5 @@
 from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess.config import light_tiles, dark_tiles
+from cmdchess.displayconfig import LIGHTSQR, DARKSQR, UNICODE
 from colorama import Style
 
 class Tile:
@@ -11,14 +11,19 @@ class Tile:
         self._occupant = None
         
     def __str__(self):
-        if self.color == 'light':
-            background = light_tiles
+        if UNICODE:
+            extra_space = ' '
         else:
-            background = dark_tiles
+            extra_space = ''
+        
+        if self.color == 'light':
+            background = LIGHTSQR
+        else:
+            background = DARKSQR
         
         if self.occupant is None:
-            return background + " "
-        return background + str(self.occupant)
+            return background + '   ' + extra_space
+        return background + f' {str(self.occupant)} ' + extra_space
 
     @property
     def position(self):
@@ -61,13 +66,13 @@ class Board:
         return layout
 
     def display_layout(self):
-        color_idx = 0
         for rank_ in ['8', '7', '6', '5', '4', '3', '2', '1']:
             for file_ in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
-                if color_idx % 2 == 0:
-                    print(" " + self.layout[file_ + rank_], end=" ")
                 if file_ == 'H':
-                    print(Style.RESET_ALL, "")
+                    print(str(self.layout[file_ + rank_]))
+                else:
+                    print(str(self.layout[file_ + rank_]), end = "")
+        print(Style.RESET_ALL)
 
     @staticmethod
     def to_cartesian(algebraic):
