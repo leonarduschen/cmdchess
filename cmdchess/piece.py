@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from cmdchess import piece_display
+from cmdchess.config import piece_display
 
 
 class Piece(ABC):

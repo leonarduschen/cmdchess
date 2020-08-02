@@ -1,5 +1,5 @@
 from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess import light_tiles, dark_tiles
+from cmdchess.config import light_tiles, dark_tiles
 from colorama import Style
 
 class Tile:
