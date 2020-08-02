@@ -1,7 +1,7 @@
 from colorama import Fore, Back, Style
 
 #Unicode Console
-unicode_console = True
+unicode_console = False
 
 #Square color settings
 LIGHTSQR = Back.WHITE
