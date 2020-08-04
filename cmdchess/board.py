@@ -1,7 +1,7 @@
 """Board module"""
 
 from colorama import Style
-from .displayconfig import LIGHTSQR, DARKSQR
+from .config import configurations
 
 
 class Tile:
@@ -12,15 +12,18 @@ class Tile:
         self._color = color
         self._occupant = None
         
+    def __repr__(self):
+        return f'{self.color} {repr(self.occupant)} {self.position}'
+
     def __str__(self):
         if self.color == 'light':
-            background = LIGHTSQR
+            background = configurations.lightsqr
         else:
-            background = DARKSQR
+            background = configurations.darksqr
         
         if self.occupant is None:
-            return '   '
-        return f' {str(self.occupant)} '
+            return background + '   '
+        return background + f' {str(self.occupant)} '
 
     @property
     def position(self):
@@ -71,38 +74,38 @@ class Board:
                     print(str(self.layout[file_ + rank_]), end = "")
         print(Style.RESET_ALL)
 
-    @staticmethod
-    def to_cartesian(algebraic):
-        mapper = {
-            'A': 1,
-            'B': 2,
-            'C': 3,
-            'D': 4,
-            'E': 5,
-            'F': 6,
-            'G': 7,
-            'H': 8}
 
-        hor = mapper[algebraic[0]]
-        ver = int(algebraic[1])
+def to_cartesian(algebraic):
+    mapper = {
+        'A': 1,
+        'B': 2,
+        'C': 3,
+        'D': 4,
+        'E': 5,
+        'F': 6,
+        'G': 7,
+        'H': 8}
 
-        return (hor, ver)
+    hor = mapper[algebraic[0]]
+    ver = int(algebraic[1])
 
-    @staticmethod
-    def to_algebraic(cartesian):
-        mapper = {
-            1: 'A',
-            2: 'B',
-            3: 'C',
-            4: 'D',
-            5: 'E',
-            6: 'F',
-            7: 'G',
-            8: 'H'}
+    return (hor, ver)
 
-        files = mapper[cartesian[0]]
-        rank = str(cartesian[1])
 
-        return files + rank
+def to_algebraic(cartesian):
+    mapper = {
+        1: 'A',
+        2: 'B',
+        3: 'C',
+        4: 'D',
+        5: 'E',
+        6: 'F',
+        7: 'G',
+        8: 'H'}
+
+    files = mapper[cartesian[0]]
+    rank = str(cartesian[1])
+
+    return files + rank
 
 

@@ -1,6 +1,8 @@
+"""Chess variants module"""
+
 from abc import ABC, abstractmethod
-from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess.board import Board, Tile
+from .piece import King, Queen, Bishop, Knight, Rook, Pawn
+from .board import Board, Tile, to_algebraic, to_cartesian
 
 
 class Variant(ABC):

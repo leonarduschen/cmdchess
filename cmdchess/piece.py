@@ -1,14 +1,25 @@
+"""Piece module"""
+
 from abc import ABC, abstractmethod
+from .config import configurations
+
 
 class Piece(ABC):
     """Each piece is stored in tiles - which in turn is stored in a board layout attribute"""
 
     def __init__(self, color):
         self._color = color
-        self.history = None
+
+    def __repr__(self):
+        return self.color + self.notation
 
     def __str__(self):
-        return self.color + self.notation
+        if self.color == 'W':
+            foreground = configurations.whitepiece
+        else:
+            foreground = configurations.blackpiece
+        symbol = configurations.symbols[self.color + self.notation]
+        return foreground + symbol
 
     @property
     def color(self):
@@ -87,7 +98,7 @@ class Queen(Piece):
         combination = combination.remove((0, 0))
         return [(position[0] + i, position[1] + j)
                 for i, j in combination]
-    
+
     def generate_available_captures(self, position):
         hor = [-8, -7, -6, -5, -4, -3, -
                2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -197,7 +208,7 @@ class Rook(Piece):
 class Pawn(Piece):
     def __init__(self, color):
         super().__init__(color)
-    
+
     @property
     def notation(self):
         return 'P'
@@ -219,7 +230,7 @@ class Pawn(Piece):
 
         return [(position[0] + i, position[1] + j)
                 for i, j in combination]
-    
+
     def generate_available_captures(self, position):
         if self.color == 'W':
             combination = [(-1, 1), (1, 1)]

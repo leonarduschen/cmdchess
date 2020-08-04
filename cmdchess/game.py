@@ -1,17 +1,12 @@
+"""Game module"""
+
 import os
-import imp
+from .variant import Standard
 
 
 def main():
-    import cmdchess.variant
-    import cmdchess.displayconfig as displayconfig
-    displayconfig.unicode_console.append(True)
-    imp.reload(cmdchess.displayconfig)
-    imp.reload(cmdchess.variant)
-    import cmdchess.variant
-    import cmdchess.displayconfig as displayconfig
 
-    game = cmdchess.variant.Standard()
+    game = Standard()
     while True:
         os.system('cls')
         game.board.display_layout()

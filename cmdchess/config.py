@@ -1,53 +1,90 @@
-from colorama import Fore, Back, Style
+"""Package-wide configuration settings"""
 
-#Square color settings
-LIGHTSQR = Back.WHITE
-DARKSQR = Back.BLACK
+from colorama import Fore, Back
 
 #Piece display settings
-class config:
-    WK: str
-    WQ: str
-    WB: str
-    WN: str
-    WR: str
-    WP: str
-    BK: str
-    BQ: str
-    BB: str
-    BN: str
-    BR: str
-    BP: str
-
-ASCII_WHITE = Style.BRIGHT + Fore.LIGHTWHITE_EX
-ASCII_BLACK = Style.BRIGHT + Fore.LIGHTBLACK_EX
 ASCII = {
-    'WK': ASCII_WHITE + 'K',
-    'WQ': ASCII_WHITE + 'Q',
-    'WB': ASCII_WHITE + 'B',
-    'WN': ASCII_WHITE + 'N',
-    'WR': ASCII_WHITE + 'R',
-    'WP': ASCII_WHITE + chr(9650),
-    'BK': ASCII_BLACK + 'K',
-    'BQ': ASCII_BLACK + 'Q',
-    'BB': ASCII_BLACK + 'B',
-    'BN': ASCII_BLACK + 'N',
-    'BR': ASCII_BLACK + 'R',
-    'BP': ASCII_BLACK + chr(9650)
+    'WK': 'K',
+    'WQ': 'Q',
+    'WB': 'B',
+    'WN': 'N',
+    'WR': 'R',
+    'WP': chr(9650),
+    'BK': 'K',
+    'BQ': 'Q',
+    'BB': 'B',
+    'BN': 'N',
+    'BR': 'R',
+    'BP': chr(9650)
 }
 
-UNICODE_COLOR = Style.BRIGHT + Fore.LIGHTBLACK_EX
 UNICODE = {
-    'WK': UNICODE_COLOR + '♔',
-    'WQ': UNICODE_COLOR + '♕',
-    'WB': UNICODE_COLOR + '♗',
-    'WN': UNICODE_COLOR + '♘',
-    'WR': UNICODE_COLOR + '♖',
-    'WP': UNICODE_COLOR + '♙',
-    'BK': UNICODE_COLOR + '♚',
-    'BQ': UNICODE_COLOR + '♛',
-    'BB': UNICODE_COLOR + '♝',
-    'BN': UNICODE_COLOR + '♞',
-    'BR': UNICODE_COLOR + '♜',
-    'BP': UNICODE_COLOR + '♟'
+    'WK': '♔',
+    'WQ': '♕',
+    'WB': '♗',
+    'WN': '♘',
+    'WR': '♖',
+    'WP': '♙',
+    'BK': '♚',
+    'BQ': '♛',
+    'BB': '♝',
+    'BN': '♞',
+    'BR': '♜',
+    'BP': '♟'
 }
+class Config:
+    def __init__(self, lightsqr, darksqr, whitepiece, blackpiece, symbols):
+        self._lightsqr = lightsqr
+        self._darksqr = darksqr
+        self._whitepiece = whitepiece
+        self._blackpiece = blackpiece
+        self._symbols = symbols
+    
+    @property
+    def lightsqr(self):
+        return self._lightsqr
+    
+    @lightsqr.setter
+    def lightsqr(self, value):
+        self._lightsqr = value
+    
+    @property
+    def darksqr(self):
+        return self._darksqr
+    
+    @darksqr.setter
+    def darksqr(self, value):
+        self._darksqr = value
+    
+    @property
+    def whitepiece(self):
+        return self._whitepiece
+    
+    @whitepiece.setter
+    def whitepiece(self, value):
+        self._whitepiece = value
+
+    @property
+    def blackpiece(self):
+        return self._blackpiece
+    
+    @blackpiece.setter
+    def blackpiece(self, value):
+        self._blackpiece = value
+
+    @property
+    def symbols(self):
+        return self._symbols
+    
+    @symbols.setter
+    def symbols(self, value):
+        self._symbols = value
+
+#Default configurations
+configurations = Config(
+    Back.WHITE,
+    Back.BLACK,
+    Fore.LIGHTWHITE_EX,
+    Fore.LIGHTBLACK_EX,
+    ASCII
+)
