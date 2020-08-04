@@ -1,13 +1,25 @@
 from colorama import Fore, Back, Style
-
-#Unicode Console
-unicode_console = False
+from typing import TypedDict
 
 #Square color settings
 LIGHTSQR = Back.WHITE
 DARKSQR = Back.BLACK
 
 #Piece display settings
+class PieceSymbol(TypedDict):
+    WK: str
+    WQ: str
+    WB: str
+    WN: str
+    WR: str
+    WP: str
+    BK: str
+    BQ: str
+    BB: str
+    BN: str
+    BR: str
+    BP: str
+
 ASCII_WHITE = Style.BRIGHT + Fore.LIGHTWHITE_EX
 ASCII_BLACK = Style.BRIGHT + Fore.LIGHTBLACK_EX
 ASCII = {
@@ -40,8 +52,3 @@ UNICODE = {
     'BR': UNICODE_COLOR + '♜',
     'BP': UNICODE_COLOR + '♟'
 }
-
-if unicode_console:
-    piece_display = UNICODE
-else:
-    piece_display = ASCII

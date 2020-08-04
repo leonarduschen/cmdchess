@@ -2,10 +2,12 @@ from abc import ABC, abstractmethod
 from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
 from cmdchess.board import Board, Tile
 
+
 class Variant(ABC):
     def __init__(self):
         self.board = Board()
         self._initialize_position()
+        # self._display = display
 
     def make_move(self, from_, to_):
         if self._isvalidmove(from_, to_):
@@ -13,6 +15,26 @@ class Variant(ABC):
             self.board.layout[from_].occupant = None
         else:
             raise ValueError(f'Invalid Move')
+
+    # def display(self, LIGHTSQR, DARKSQR, WHITEPIECE, BLACKPIECE, SYMBOLS):
+    #     """Display current game
+
+    #     Parameters:
+    #     ----------
+    #     LIGHTSQR: colorama.AnsiBack
+    #         light-colored square display
+    #     DARKSQR: colorama.AnsiBack
+    #         dark-colored square display
+    #     WHITEPIECE: colorama.AnsiFore
+    #         white-colored piece display
+    #     BLACKPIECE: colorama.AnsiFore
+    #         black-colored piece display
+    #     SYMBOLS: displayconfig.PieceSymbol
+    #         typed-dictionary containing piece symbols as string
+    #     """
+    #     LIGHTSQR, DARKSQR = LIGHTSQR, DARKSQR
+    #     WHITEPIECE, BLACKPIECE = WHITEPIECE, BLACKPIECE
+    #     SYMBOLS = SYMBOLS
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):

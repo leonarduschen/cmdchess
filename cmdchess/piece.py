@@ -1,6 +1,4 @@
 from abc import ABC, abstractmethod
-from cmdchess.displayconfig import piece_display
-
 
 class Piece(ABC):
     """Each piece is stored in tiles - which in turn is stored in a board layout attribute"""
@@ -10,7 +8,7 @@ class Piece(ABC):
         self.history = None
 
     def __str__(self):
-        return piece_display[self.notation]
+        return self.color + self.notation
 
     @property
     def color(self):
@@ -41,7 +39,7 @@ class King(Piece):
 
     @property
     def notation(self):
-        return self.color + 'K'
+        return 'K'
 
     @property
     def hopping(self):
@@ -70,7 +68,7 @@ class Queen(Piece):
 
     @property
     def notation(self):
-        return self.color + 'Q'
+        return 'Q'
 
     @property
     def hopping(self):
@@ -111,7 +109,7 @@ class Bishop(Piece):
 
     @property
     def notation(self):
-        return self.color + 'B'
+        return 'B'
 
     @property
     def hopping(self):
@@ -144,7 +142,7 @@ class Knight(Piece):
 
     @property
     def notation(self):
-        return self.color + 'N'
+        return 'N'
 
     @property
     def hopping(self):
@@ -169,7 +167,7 @@ class Rook(Piece):
 
     @property
     def notation(self):
-        return self.color + 'R'
+        return 'R'
 
     @property
     def hopping(self):
@@ -202,7 +200,7 @@ class Pawn(Piece):
     
     @property
     def notation(self):
-        return self.color + 'P'
+        return 'P'
 
     @property
     def hopping(self):

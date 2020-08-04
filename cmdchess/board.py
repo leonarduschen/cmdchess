@@ -1,5 +1,5 @@
 from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess.displayconfig import LIGHTSQR, DARKSQR, UNICODE
+from cmdchess.displayconfig import LIGHTSQR, DARKSQR
 from colorama import Style
 
 class Tile:
@@ -11,19 +11,14 @@ class Tile:
         self._occupant = None
         
     def __str__(self):
-        if UNICODE:
-            extra_space = ' '
-        else:
-            extra_space = ''
-        
         if self.color == 'light':
             background = LIGHTSQR
         else:
             background = DARKSQR
         
         if self.occupant is None:
-            return background + '   ' + extra_space
-        return background + f' {str(self.occupant)} ' + extra_space
+            return '   '
+        return f' {str(self.occupant)} '
 
     @property
     def position(self):
