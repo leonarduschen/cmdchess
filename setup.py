@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 with open('LICENSE') as f:
-    license = f.read()
+    licensefile = f.read()
 
 setup(
     name='cmdchess',
@@ -15,11 +15,11 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='simple-spherical-cow',
-    author_email = 'leonardus.chen@gmail.com',
+    author_email='leonardus.chen@gmail.com',
     url='https://github.com/simple-spherical-cow/cmdchess',
-    license=license,
+    license=licensefile,
     packages=find_packages(exclude=('tests', 'docs')),
-    entry_points={  # Optional
+    entry_points={
         'console_scripts': [
             'cmdchess=cmdchess:playchess',
         ],

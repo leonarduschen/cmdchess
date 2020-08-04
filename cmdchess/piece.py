@@ -5,9 +5,20 @@ from .config import configurations
 
 
 class Piece(ABC):
-    """Each piece is stored in tiles - which in turn is stored in a board layout attribute"""
+    """Abstract-class for standard (including pawn) and custom chess pieces
+
+    At any point of time, a piece instance is stored in a tile instance - which in turn is stored in a board instance
+    """
 
     def __init__(self, color):
+        """Initialization of a piece instance
+
+        Parameters
+        ----------
+        color: str
+            Piece color of either 'W' or 'B'
+
+        """
         self._color = color
 
     def __repr__(self):
@@ -23,31 +34,62 @@ class Piece(ABC):
 
     @property
     def color(self):
+        """str: Piece color of either 'W' or 'B'"""
         return self._color
 
     @property
     @abstractmethod
     def notation(self):
-        pass
+        """str: Algebraic notation (e.g. 'K', 'Q', 'B', 'N', 'R', 'P')"""
 
     @property
     @abstractmethod
     def hopping(self):
-        pass
+        """bool: Ability to ignore blocking pieces"""
 
     @abstractmethod
     def generate_available_moves(self, position):
-        pass
+        """Return available moves relative to current position
+
+        Note
+        ----
+        Does not take into account other pieces
+
+        Parameters
+        ----------
+        position: obj:'tuple' of obj:'int'
+            Cartesian coordinate of current position (e.g. (5, 8))
+
+        Returns
+        -------
+        obj:'list' of obj:'tuple' of obj:'int'
+            Available moves in cartesian coordinate
+
+        """
 
     @abstractmethod
     def generate_available_captures(self, position):
-        pass
+        """Return available captures relative to current position
+
+        Note
+        ----
+        Does not take into account other pieces. Standard pieces have the exact same captures as moves except for pawns.
+
+        Parameters
+        ----------
+        position: obj:'tuple' of obj:'int'
+            Cartesian coordinate of current position (e.g. (5, 8))
+
+        Returns
+        -------
+        obj:'list' of obj:'tuple' of obj:'int'
+            Available moves in cartesian coordinate
+
+        """
 
 
 class King(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """King class, notation: K"""
     @property
     def notation(self):
         return 'K'
@@ -74,9 +116,7 @@ class King(Piece):
 
 
 class Queen(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """Queen class, notation: Q"""
     @property
     def notation(self):
         return 'Q'
@@ -115,9 +155,7 @@ class Queen(Piece):
 
 
 class Bishop(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """Bishop class, notation: B"""
     @property
     def notation(self):
         return 'B'
@@ -148,9 +186,7 @@ class Bishop(Piece):
 
 
 class Knight(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """Knight class, notation: N"""
     @property
     def notation(self):
         return 'N'
@@ -173,9 +209,7 @@ class Knight(Piece):
 
 
 class Rook(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """Rook class, notation: R"""
     @property
     def notation(self):
         return 'R'
@@ -206,9 +240,7 @@ class Rook(Piece):
 
 
 class Pawn(Piece):
-    def __init__(self, color):
-        super().__init__(color)
-
+    """Pawn class, notation: P"""
     @property
     def notation(self):
         return 'P'
@@ -242,4 +274,5 @@ class Pawn(Piece):
                 for i, j in combination]
 
     def promote(self):
-        pass
+        """Pawn promotion"""
+        return False
