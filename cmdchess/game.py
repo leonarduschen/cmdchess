@@ -6,6 +6,7 @@ from .config import configurations
 
 
 def main(ASCII = True):
+    """Run game"""
     if ASCII:
         configurations.symbols = {
             'WK': 'K',
