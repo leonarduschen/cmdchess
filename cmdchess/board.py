@@ -1,6 +1,8 @@
-from cmdchess.piece import King, Queen, Bishop, Knight, Rook, Pawn
-from cmdchess.displayconfig import LIGHTSQR, DARKSQR
+"""Board module"""
+
 from colorama import Style
+from .displayconfig import LIGHTSQR, DARKSQR
+
 
 class Tile:
     """Tiles makes up board layout. At any point of time, a tile can either be occupied by a piece or be vacant"""

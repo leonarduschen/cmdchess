@@ -1,12 +1,11 @@
 from colorama import Fore, Back, Style
-from typing import TypedDict
 
 #Square color settings
 LIGHTSQR = Back.WHITE
 DARKSQR = Back.BLACK
 
 #Piece display settings
-class PieceSymbol(TypedDict):
+class config:
     WK: str
     WQ: str
     WB: str
