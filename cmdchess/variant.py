@@ -2,37 +2,44 @@
 
 from abc import ABC, abstractmethod
 from .piece import King, Queen, Bishop, Knight, Rook, Pawn
-from .board import Board, Tile, to_algebraic, to_cartesian
+from .board import Board
 
 
 class Variant(ABC):
+    """Abstract-class for standard (including pawn) and custom chess pieces
+
+    At any point of time, a piece instance is stored in a square instance - which in turn is stored in a board instance
+
+    """
+
     def __init__(self):
         self.board = Board()
         self._initialize_position()
         # self._display = display
 
     def make_move(self, from_, to_):
+        """Make moves"""
         if self._isvalidmove(from_, to_):
             self.board.layout[to_].occupant = self.board.layout[from_].occupant
             self.board.layout[from_].occupant = None
         else:
-            raise ValueError(f'Invalid Move')
+            raise ValueError(f'Invalid Move: {from_} to {to_}')
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):
         pass
-    
+
     @abstractmethod
     def isfinished(self):
-        pass
+        """Check whether game is finished"""
 
     @abstractmethod
     def _initialize_position(self):
         pass
 
+
 class Standard(Variant):
-    def __init__(self):
-        super().__init__()
+    """Standard chess game"""
 
     def _isvalidmove(self, from_, to_):
         return True
@@ -77,11 +84,10 @@ class Standard(Variant):
         self.board.layout['G8'].occupant = Knight('B')
         self.board.layout['H8'].occupant = Rook('B')
 
+
 class Chess960(Variant):
-    def __init__(self):
-        super().__init__()
+    """Cheess960"""
+
 
 class Horde(Variant):
-    def __init__(self):
-        super().__init__()
-
+    """Horde chess"""

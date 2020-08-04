@@ -12,7 +12,7 @@ def main():
         game.board.display_layout()
         print(" ")
         move = input("Move: ")
-        
+
         current = move[:2]
         destination = move[2:]
 
@@ -20,6 +20,7 @@ def main():
         print(f'Moving {current} to {destination}')
         game.make_move(current, destination)
         game.board.display_layout()
+
 
 if __name__ == '__main__':
     main()
