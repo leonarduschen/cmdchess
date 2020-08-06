@@ -5,7 +5,7 @@ from .variant import Standard
 from .config import configurations
 
 
-def main(ASCII = True):
+def main(ASCII=True):
     """Run game"""
     if ASCII:
         configurations.symbols = {
@@ -22,7 +22,7 @@ def main(ASCII = True):
             'BR': 'R',
             'BP': chr(9650)
         }
-    
+
     game = Standard()
     while True:
         os.system('cls')

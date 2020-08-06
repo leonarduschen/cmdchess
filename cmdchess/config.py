@@ -111,7 +111,7 @@ class Config:
 # Default configurations
 configurations = Config(
     Back.WHITE,
-    Back.BLACK,
+    Back.YELLOW,
     Fore.LIGHTWHITE_EX,
     Fore.LIGHTBLACK_EX,
     UNICODE
