@@ -11,16 +11,19 @@ class Piece(ABC):
 
     """
 
-    def __init__(self, color):
+    def __init__(self, color, position=None):
         """Initialization of a piece instance
 
         Parameters
         ----------
         color: str
             Piece color of either 'W' or 'B'
+        position: str
+            Algebraic notation of current position (e.g. A1)
 
         """
         self._color = color
+        self._position = position
 
     def __repr__(self):
         return self.color + self.notation
@@ -37,6 +40,15 @@ class Piece(ABC):
     def color(self):
         """str: Piece color of either 'W' or 'B'"""
         return self._color
+
+    @property
+    def position(self):
+        """str: Algebraic notatio of current position (e.g. A1)"""
+        return self._position
+
+    @position.setter
+    def position(self, value):
+        self._position = value
 
     @property
     @abstractmethod
@@ -233,7 +245,7 @@ class Rook(Piece):
 class Pawn(Piece):
     """Pawn class, notation: P"""
 
-    def __init__(self, color, double_advance=True):
+    def __init__(self, color, position=None, double_advance=True):
         """Pawn initialization
 
         Parameters
@@ -245,7 +257,7 @@ class Pawn(Piece):
 
         """
 
-        super().__init__(color)
+        super().__init__(color, position)
         self.double_advance = double_advance
 
     @property
