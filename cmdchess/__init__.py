@@ -1,4 +1,6 @@
-"""cmdchess - play chess at cmd.exe"""
+"""cmdchess
+
+"""
 import argparse
 from cmdchess.game import main
 
@@ -13,6 +15,9 @@ args = parser.parse_args()
 
 
 def playchess():
+    """Run on execution
+    
+    """
     if args.unicode:
         main(ASCII=False)
     main()

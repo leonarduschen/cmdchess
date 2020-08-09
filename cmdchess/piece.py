@@ -1,4 +1,6 @@
-"""Piece module"""
+"""Piece module
+
+"""
 
 from abc import ABC, abstractmethod
 from .config import configurations
@@ -9,6 +11,13 @@ class Piece(ABC):
 
     At any point of time, a piece instance is stored in a square instance - which in turn is stored in a board instance
 
+    Attributes
+    ----------
+    color
+    position
+    notation
+    hopping
+
     """
 
     def __init__(self, color, position=None):
@@ -16,9 +25,9 @@ class Piece(ABC):
 
         Parameters
         ----------
-        color: str
-            Piece color of either 'W' or 'B'
-        position: str
+        color: {'W', 'B'}
+            Piece color
+        position: str, optional
             Algebraic notation of current position (e.g. A1)
 
         """
@@ -38,12 +47,16 @@ class Piece(ABC):
 
     @property
     def color(self):
-        """str: Piece color of either 'W' or 'B'"""
+        """str: Piece color of either 'W' or 'B'
+
+        """
         return self._color
 
     @property
     def position(self):
-        """str: Algebraic notatio of current position (e.g. A1)"""
+        """str: Algebraic notatio of current position (e.g. A1)
+
+        """
         return self._position
 
     @position.setter
@@ -53,12 +66,18 @@ class Piece(ABC):
     @property
     @abstractmethod
     def notation(self):
-        """str: Algebraic notation (e.g. 'K', 'Q', 'B', 'N', 'R', 'P')"""
+        """str: Algebraic notation (e.g. 'K', 'Q', 'B', 'N', 'R', 'P')
+
+        """
+        raise NotImplementedError()
 
     @property
     @abstractmethod
     def hopping(self):
-        """bool: Ability to ignore blocking pieces"""
+        """bool: Ability to ignore blocking pieces
+
+        """
+        raise NotImplementedError()
 
     @abstractmethod
     def piece_moves(self):
@@ -74,6 +93,7 @@ class Piece(ABC):
             Available moves in cartesian coordinate
 
         """
+        raise NotImplementedError()
 
     @abstractmethod
     def piece_captures(self):
@@ -89,10 +109,13 @@ class Piece(ABC):
             Available moves in cartesian coordinate
 
         """
+        raise NotImplementedError()
 
 
 class King(Piece):
-    """King class, notation: K"""
+    """King class
+
+    """
     @property
     def notation(self):
         return 'K'
@@ -119,7 +142,9 @@ class King(Piece):
 
 
 class Queen(Piece):
-    """Queen class, notation: Q"""
+    """Queen class
+
+    """
     @property
     def notation(self):
         return 'Q'
@@ -158,7 +183,9 @@ class Queen(Piece):
 
 
 class Bishop(Piece):
-    """Bishop class, notation: B"""
+    """Bishop class
+
+    """
     @property
     def notation(self):
         return 'B'
@@ -189,7 +216,9 @@ class Bishop(Piece):
 
 
 class Knight(Piece):
-    """Knight class, notation: N"""
+    """Knight class
+
+    """
     @property
     def notation(self):
         return 'N'
@@ -212,7 +241,9 @@ class Knight(Piece):
 
 
 class Rook(Piece):
-    """Rook class, notation: R"""
+    """Rook class
+
+    """
     @property
     def notation(self):
         return 'R'
@@ -243,7 +274,9 @@ class Rook(Piece):
 
 
 class Pawn(Piece):
-    """Pawn class, notation: P"""
+    """Pawn class
+
+    """
 
     def __init__(self, color, position=None, double_advance=True):
         """Pawn initialization
@@ -292,5 +325,7 @@ class Pawn(Piece):
         return combination
 
     def promote(self):
-        """Pawn promotion"""
+        """Pawn promotion
+
+        """
         return False

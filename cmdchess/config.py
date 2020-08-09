@@ -1,4 +1,6 @@
-"""Package-wide configuration settings"""
+"""Package-wide configuration settings
+
+"""
 
 from colorama import Fore, Back
 
@@ -38,6 +40,15 @@ class Config:
     """A configuration container
 
     This class is imported on multiple modules and used as a package wide configuration settings
+
+    Attributes
+    ----------
+    lightsqr
+    darksqr
+    whitepiece
+    blackpiece
+    symbols
+
     """
 
     def __init__(self, lightsqr, darksqr, whitepiece, blackpiece, symbols):
@@ -55,6 +66,7 @@ class Config:
             display color of black pieces
         symbols: Symbols
             display symbols of both white and black pieces
+
         """
         self._lightsqr = lightsqr
         self._darksqr = darksqr

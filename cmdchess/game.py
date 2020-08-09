@@ -1,4 +1,6 @@
-"""Game module"""
+"""Game module
+
+"""
 
 import os
 
@@ -7,7 +9,14 @@ from .config import configurations
 
 
 def main(ASCII=True):
-    """Run game"""
+    """Run game
+
+    Parameters
+    ----------
+    ASCII: bool, optional
+        Determine whether to run in ASCII or unicode encoding format
+    
+    """
     if ASCII:
         configurations.symbols = {
             'WK': 'K',

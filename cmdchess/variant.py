@@ -1,4 +1,6 @@
-"""Chess variants module"""
+"""Variants module
+
+"""
 
 from abc import ABC, abstractmethod
 from .piece import King, Queen, Bishop, Knight, Rook, Pawn
@@ -6,9 +8,7 @@ from .board import Board
 
 
 class Variant(ABC):
-    """Abstract-class for standard (including pawn) and custom chess pieces
-
-    At any point of time, a piece instance is stored in a square instance - which in turn is stored in a board instance
+    """Abstract-class for chess game variants (e.g. standard, chess960, Horde)
 
     """
 
@@ -17,7 +17,9 @@ class Variant(ABC):
         self._initialize_position()
 
     def make_move(self, from_, to_):
-        """Make moves"""
+        """Make moves
+        
+        """
         if self._isvalidmove(from_, to_):
             self.board[to_].occupant = self.board[from_].occupant
             self.board[from_].occupant = None
@@ -26,19 +28,24 @@ class Variant(ABC):
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def isfinished(self):
-        """Check whether game is finished"""
+        """Check whether game is finished
+        
+        """
+        raise NotImplementedError()
 
     @abstractmethod
     def _initialize_position(self):
-        pass
+        raise NotImplementedError()
 
 
 class Standard(Variant):
-    """Standard chess game"""
+    """Standard chess game
+    
+    """
 
     def _isvalidmove(self, from_, to_):
         return True
@@ -82,8 +89,12 @@ class Standard(Variant):
 
 
 class Chess960(Variant):
-    """Cheess960"""
+    """Cheess960
+    
+    """
 
 
 class Horde(Variant):
-    """Horde chess"""
+    """Horde chess
+    
+    """

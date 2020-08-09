@@ -1,4 +1,6 @@
-"""Board module"""
+"""Board module
+
+"""
 
 from colorama import Style
 from .config import configurations
@@ -14,8 +16,8 @@ class Square:
         ----------
         position: str
             Algebraic coordinate of current position (e.g. 'A1')
-        color: str
-            Piece color of either 'W' or 'B'
+        color: {'dark', 'light'}
+            Square color
 
         """
         self._position = position
@@ -59,6 +61,7 @@ class Board:
     """Composition of 64 individual square instances.
 
     The class may be treated as a dictionary with chess board algebraic notatation as its keys (e.g. A1).
+
     """
     __slots__ = (
         'A8', 'B8', 'C8', 'D8', 'E8', 'F8', 'G8', 'H8',
@@ -109,7 +112,9 @@ class Board:
 
 
 def to_cartesian(algebraic):
-    """Convert algebraic to cartesian"""
+    """Convert algebraic to cartesian
+    
+    """
     mapper = {
         'A': 1,
         'B': 2,
@@ -127,7 +132,9 @@ def to_cartesian(algebraic):
 
 
 def to_algebraic(cartesian):
-    """Convert cartesian to algebraic"""
+    """Convert cartesian to algebraic
+    
+    """
     mapper = {
         1: 'A',
         2: 'B',
