@@ -14,14 +14,12 @@ class Variant(ABC):
 
     def __init__(self):
         self.board = Board()
-        self._initialize_position()
-        # self._display = display
 
     def make_move(self, from_, to_):
         """Make moves"""
         if self._isvalidmove(from_, to_):
-            self.board.layout[to_].occupant = self.board.layout[from_].occupant
-            self.board.layout[from_].occupant = None
+            self.board[to_].occupant = self.board[from_].occupant
+            self.board[from_].occupant = None
         else:
             raise ValueError(f'Invalid Move: {from_} to {to_}')
 
@@ -48,41 +46,38 @@ class Standard(Variant):
         return False
 
     def _initialize_position(self):
-        self.board.layout['A1'].occupant = Rook('W')
-        self.board.layout['B1'].occupant = Knight('W')
-        self.board.layout['C1'].occupant = Bishop('W')
-        self.board.layout['D1'].occupant = Queen('W')
-        self.board.layout['E1'].occupant = King('W')
-        self.board.layout['F1'].occupant = Bishop('W')
-        self.board.layout['G1'].occupant = Knight('W')
-        self.board.layout['H1'].occupant = Rook('W')
-
-        self.board.layout['A2'].occupant = Pawn('W')
-        self.board.layout['B2'].occupant = Pawn('W')
-        self.board.layout['C2'].occupant = Pawn('W')
-        self.board.layout['D2'].occupant = Pawn('W')
-        self.board.layout['E2'].occupant = Pawn('W')
-        self.board.layout['F2'].occupant = Pawn('W')
-        self.board.layout['G2'].occupant = Pawn('W')
-        self.board.layout['H2'].occupant = Pawn('W')
-
-        self.board.layout['A7'].occupant = Pawn('B')
-        self.board.layout['B7'].occupant = Pawn('B')
-        self.board.layout['C7'].occupant = Pawn('B')
-        self.board.layout['D7'].occupant = Pawn('B')
-        self.board.layout['E7'].occupant = Pawn('B')
-        self.board.layout['F7'].occupant = Pawn('B')
-        self.board.layout['G7'].occupant = Pawn('B')
-        self.board.layout['H7'].occupant = Pawn('B')
-
-        self.board.layout['A8'].occupant = Rook('B')
-        self.board.layout['B8'].occupant = Knight('B')
-        self.board.layout['C8'].occupant = Bishop('B')
-        self.board.layout['D8'].occupant = Queen('B')
-        self.board.layout['E8'].occupant = King('B')
-        self.board.layout['F8'].occupant = Bishop('B')
-        self.board.layout['G8'].occupant = Knight('B')
-        self.board.layout['H8'].occupant = Rook('B')
+        self.board['A1'].occupant = Rook('W')
+        self.board['B1'].occupant = Knight('W')
+        self.board['C1'].occupant = Bishop('W')
+        self.board['D1'].occupant = Queen('W')
+        self.board['E1'].occupant = King('W')
+        self.board['F1'].occupant = Bishop('W')
+        self.board['G1'].occupant = Knight('W')
+        self.board['H1'].occupant = Rook('W')
+        self.board['A2'].occupant = Pawn('W')
+        self.board['B2'].occupant = Pawn('W')
+        self.board['C2'].occupant = Pawn('W')
+        self.board['D2'].occupant = Pawn('W')
+        self.board['E2'].occupant = Pawn('W')
+        self.board['F2'].occupant = Pawn('W')
+        self.board['G2'].occupant = Pawn('W')
+        self.board['H2'].occupant = Pawn('W')
+        self.board['A7'].occupant = Pawn('B')
+        self.board['B7'].occupant = Pawn('B')
+        self.board['C7'].occupant = Pawn('B')
+        self.board['D7'].occupant = Pawn('B')
+        self.board['E7'].occupant = Pawn('B')
+        self.board['F7'].occupant = Pawn('B')
+        self.board['G7'].occupant = Pawn('B')
+        self.board['H7'].occupant = Pawn('B')
+        self.board['A8'].occupant = Rook('B')
+        self.board['B8'].occupant = Knight('B')
+        self.board['C8'].occupant = Bishop('B')
+        self.board['D8'].occupant = Queen('B')
+        self.board['E8'].occupant = King('B')
+        self.board['F8'].occupant = Bishop('B')
+        self.board['G8'].occupant = Knight('B')
+        self.board['H8'].occupant = Rook('B')
 
 
 class Chess960(Variant):
