@@ -77,7 +77,7 @@ class Board:
         for attribute in self.__slots__:
             idx += 1
             setattr(self, attribute, Square(attribute, color[idx % 2]))
-            if self.__slots__[0] == 'H':
+            if attribute[0] == 'H':
                 idx += 1
 
     def __getitem__(self, key):

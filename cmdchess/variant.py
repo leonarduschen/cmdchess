@@ -14,6 +14,7 @@ class Variant(ABC):
 
     def __init__(self):
         self.board = Board()
+        self._initialize_position()
 
     def make_move(self, from_, to_):
         """Make moves"""
