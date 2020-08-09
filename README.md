@@ -12,18 +12,19 @@ Source: https://github.com/simple-spherical-cow
 3. Run: pip install .
 4. Run: cmdchess
 
-![demo](docs/demo.jpg?raw=true)
+![demo](docs/ascii.jpg?raw=true)
 
 ### Usage:
 ----------
-Key in moves (e.g. A2A4)
+- Key in moves (e.g. A2A4)
+- Run: cmdchess -utf for UTF consoles
+- Run: cmdchess -h for more info
 
 ### Future
 ----------
 This package is open sourced under the MIT license.
 
 Upcoming featues:
-- Support for unicode console representation
 - Proper move notation interpretation
 - Rule implementation
 - Puzzles
