@@ -1,6 +1,7 @@
 """Game module"""
 
 import os
+
 from .variant import Standard
 from .config import configurations
 
