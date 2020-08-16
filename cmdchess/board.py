@@ -133,7 +133,7 @@ class Board:
             Current occupants and its corresponding keys
 
         """
-        if cartesian == True:
+        if cartesian:
             return [(to_cartesian(key), value.occupant) for key, value in self.items()]
         return [(key, value.occupant) for key, value in self.items()]
 

@@ -77,7 +77,7 @@ class Config:
     @property
     def lightsqr(self):
         """colorama.AnsiBack: color of light squares
-        
+
         """
         return self._lightsqr
 
@@ -88,7 +88,7 @@ class Config:
     @property
     def darksqr(self):
         """colorama.AnsiBack: color of dark squares
-        
+
         """
         return self._darksqr
 
@@ -99,7 +99,7 @@ class Config:
     @property
     def whitepiece(self):
         """colorama.AnsiFore: color of white pieces
-        
+
         """
         return self._whitepiece
 
@@ -110,7 +110,7 @@ class Config:
     @property
     def blackpiece(self):
         """colorama.AnsiFore: color of white pieces
-        
+
         """
         return self._blackpiece
 
@@ -121,7 +121,7 @@ class Config:
     @property
     def symbols(self):
         """Symbols: symbols of both white and black pieces
-        
+
         """
         return self._symbols
 
