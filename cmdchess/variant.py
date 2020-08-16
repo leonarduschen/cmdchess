@@ -4,7 +4,14 @@
 
 from abc import ABC, abstractmethod
 from .piece import King, Queen, Bishop, Knight, Rook, Pawn
-from .board import Board
+from .board import Board, to_cartesian, to_algebraic
+
+
+class MoveException(Exception):
+    """Raised when making invalid moves
+
+    """
+    pass
 
 
 class Variant(ABC):
@@ -18,13 +25,20 @@ class Variant(ABC):
 
     def make_move(self, from_, to_):
         """Make moves
-        
+
+        Parameters
+        ----------
+        from_: str
+            Algebraic coordinate of the peice being moved
+        to_ str:
+            Algebraic coordinate of the destination square
+
         """
-        if self._isvalidmove(from_, to_):
+        if not self._isvalidmove(from_, to_):
+            raise MoveException("Invalid move!")
+        else:
             self.board[to_].occupant = self.board[from_].occupant
             self.board[from_].occupant = None
-        else:
-            raise ValueError(f'Invalid Move: {from_} to {to_}')
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):
@@ -33,7 +47,7 @@ class Variant(ABC):
     @abstractmethod
     def isfinished(self):
         """Check whether game is finished
-        
+
         """
         raise NotImplementedError()
 
@@ -44,10 +58,35 @@ class Variant(ABC):
 
 class Standard(Variant):
     """Standard chess game
-    
+
     """
 
     def _isvalidmove(self, from_, to_):
+        if self.board[from_].occupant is None:
+            print("Moving from empty square")
+            return False  # moving from empty square
+        piece = self.board[from_].occupant
+        diff = (
+            to_cartesian(to_)[0] - to_cartesian(from_)[0],
+            to_cartesian(to_)[1] - to_cartesian(from_)[1]
+        )
+
+        if self.board[to_].occupant is not None:
+            if piece.color == self.board[to_].occupant.color:
+                print("Friendly attack")
+                return False  # friendly attack
+
+            if diff not in piece.get_captures():
+                print("Invalid piece capture")
+                return False  # invalid capture
+
+            if not piece.hopping:
+                pass
+
+        if diff not in piece.get_moves():
+            print("Invalid piece move")
+            return False  # invalid move
+
         return True
 
     def isfinished(self):
@@ -90,11 +129,11 @@ class Standard(Variant):
 
 class Chess960(Variant):
     """Cheess960
-    
+
     """
 
 
 class Horde(Variant):
     """Horde chess
-    
+
     """

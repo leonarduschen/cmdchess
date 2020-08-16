@@ -4,7 +4,7 @@
 
 import os
 
-from .variant import Standard
+from .variant import Standard, MoveException
 from .config import configurations
 
 
@@ -15,7 +15,7 @@ def main(ASCII=True):
     ----------
     ASCII: bool, optional
         Determine whether to run in ASCII or unicode encoding format
-    
+
     """
     if ASCII:
         configurations.symbols = {
@@ -38,12 +38,16 @@ def main(ASCII=True):
         os.system('cls')
         game.board.display_layout()
         print(" ")
-        move = input("Move: ")
+        while True:
+            try:
+                move = input("Move: ")
+                current = move[:2]
+                destination = move[2:]
+                game.make_move(current, destination)
+            except MoveException:
+                print()
+            else:
+                print(f'Moving {current} to {destination}')
+                break
 
-        current = move[:2]
-        destination = move[2:]
-
-        os.system('cls')
-        print(f'Moving {current} to {destination}')
-        game.make_move(current, destination)
         game.board.display_layout()
