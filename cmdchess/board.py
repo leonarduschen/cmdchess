@@ -152,6 +152,15 @@ class Board:
 def to_cartesian(algebraic):
     """Convert algebraic to cartesian
 
+    Parameters
+    ----------
+    algebraic: str
+        Algebraic coordinate
+
+    Returns
+    -------
+    tuple
+        Cartesian coordinate
     """
     mapper = {
         'A': 1,
@@ -171,6 +180,16 @@ def to_cartesian(algebraic):
 
 def to_algebraic(cartesian):
     """Convert cartesian to algebraic
+
+    Parameters
+    ----------
+    cartesian: tuple
+        Cartesian coordinate
+
+    Returns
+    -------
+    str
+        Algebraic coordinate
 
     """
     mapper = {
