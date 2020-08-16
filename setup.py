@@ -1,4 +1,6 @@
-"""Setup"""
+"""Setup
+
+"""
 
 from setuptools import setup, find_packages
 
@@ -14,9 +16,9 @@ setup(
     description='Command-line Application Chess',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author='simple-spherical-cow',
+    author='leonarduschen',
     author_email='leonardus.chen@gmail.com',
-    url='https://github.com/simple-spherical-cow/cmdchess',
+    url='https://github.com/leonarduschen/cmdchess',
     license=licensefile,
     packages=find_packages(exclude=('tests', 'docs')),
     entry_points={

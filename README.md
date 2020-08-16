@@ -8,7 +8,7 @@ Errors:
 - Check and checkmate
 - Promotion
 
-Source: https://github.com/simple-spherical-cow
+Source: https://github.com/leonarduschen/cmdchess
 
 ### Quickstart:
 ---------------
