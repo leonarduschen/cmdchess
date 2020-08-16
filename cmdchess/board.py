@@ -133,9 +133,9 @@ class Board:
             Current occupants and its corresponding keys
 
         """
-        if cartesian = True:
-            return [(to_cartesian(key), value.occupant) for key, value in board.items()]
-        return [(key, value.occupant) for key, value in board.items()]
+        if cartesian == True:
+            return [(to_cartesian(key), value.occupant) for key, value in self.items()]
+        return [(key, value.occupant) for key, value in self.items()]
 
     def display_layout(self):
         """Display current state of the board
