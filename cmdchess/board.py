@@ -8,7 +8,7 @@ from .config import configurations
 
 class Square:
     """Squares makes up board layout. At any point of time, a square can either be occupied by a piece or be vacant
-    
+
     Attributes
     ----------
     position
@@ -47,17 +47,23 @@ class Square:
 
     @property
     def position(self):
-        """str: Algebraic coordinate of current position (e.g. 'A1')"""
+        """str: Algebraic coordinate of current position (e.g. 'A1')
+
+        """
         return self._position
 
     @property
     def color(self):
-        """str: Square color of either 'W' or 'B'"""
+        """str: Square color of either 'W' or 'B'
+
+        """
         return self._color
 
     @property
     def occupant(self):
-        """Piece: An instance of piece or None"""
+        """Piece: An instance of piece or None
+
+        """
         return self._occupant
 
     @occupant.setter
@@ -102,20 +108,38 @@ class Board:
 
     def keys(self):
         """Return keys
-        
+
         """
         return self.__slots__
 
     def items(self):
         """Return all items
-        
+
         """
         for attribute in self.__slots__:
             yield attribute, getattr(self, attribute)
 
+    def get_occupants(self, cartesian=True):
+        """Get current occupants and its corresponding keys
+
+        Parameters
+        ----------
+        cartesian: bool, optional
+            Whether to return key in its cartesian representation
+
+        Returns
+        -------
+        list
+            Current occupants and its corresponding keys
+
+        """
+        if cartesian = True:
+            return [(to_cartesian(key), value.occupant) for key, value in board.items()]
+        return [(key, value.occupant) for key, value in board.items()]
+
     def display_layout(self):
         """Display current state of the board
-        
+
         """
         for square in self.__slots__:
             if square[0] == 'H':
@@ -127,7 +151,7 @@ class Board:
 
 def to_cartesian(algebraic):
     """Convert algebraic to cartesian
-    
+
     """
     mapper = {
         'A': 1,
@@ -147,7 +171,7 @@ def to_cartesian(algebraic):
 
 def to_algebraic(cartesian):
     """Convert cartesian to algebraic
-    
+
     """
     mapper = {
         1: 'A',
