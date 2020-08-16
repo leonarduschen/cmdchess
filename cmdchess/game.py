@@ -40,7 +40,10 @@ def main(ASCII=True):
         print(" ")
         while True:
             try:
-                move = input("Move: ")
+                if game.to_move == 'W':
+                    move = input("White to move: ")
+                else:
+                    move = input("Black to move: ")
                 current = move[:2]
                 destination = move[2:]
                 game.make_move(current, destination)

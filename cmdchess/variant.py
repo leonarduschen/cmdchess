@@ -22,6 +22,13 @@ class Variant(ABC):
     def __init__(self):
         self.board = Board()
         self._initialize_position()
+        self.to_move = 'W'
+
+    def change_color(self):
+        if self.to_move == 'W':
+            self.to_move = 'B'
+        else:
+            self.to_move = 'W'
 
     def make_move(self, from_, to_):
         """Make moves
@@ -39,6 +46,7 @@ class Variant(ABC):
         else:
             self.board[to_].occupant = self.board[from_].occupant
             self.board[from_].occupant = None
+            self.change_color()
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):
@@ -66,6 +74,11 @@ class Standard(Variant):
             print("Moving from empty square")
             return False  # moving from empty square
         piece = self.board[from_].occupant
+
+        if piece.color != self.to_move:
+            print("Wrong color")
+            return False  # wrong piece color
+
         diff = (
             to_cartesian(to_)[0] - to_cartesian(from_)[0],
             to_cartesian(to_)[1] - to_cartesian(from_)[1]
