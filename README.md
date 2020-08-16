@@ -1,7 +1,12 @@
 # cmdchess
 Play chess on windows command line.
 
-This project is still in progress (not yet in PyPI) and is expected to be completed in a few days.
+This project is still in progress and is expected to be completed in a few days.
+
+Errors:
+- Blocked moves exceptions left uncatched
+- Check and checkmate
+- Promotion
 
 Source: https://github.com/simple-spherical-cow
 
@@ -25,7 +30,5 @@ Source: https://github.com/simple-spherical-cow
 This package is open sourced under the MIT license.
 
 Upcoming featues:
-- Proper move notation interpretation
-- Rule implementation
+- Popular chess variants (e.g. chess960, horde)
 - Puzzles
-- Stockfish integration
