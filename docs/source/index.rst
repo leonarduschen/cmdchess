@@ -1,16 +1,17 @@
 .. cmdchess documentation master file, created by
-   sphinx-quickstart on Wed Jul 29 18:18:36 2020.
+   sphinx-quickstart on Mon Aug 17 18:43:51 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to cmdchess documentation!
+cmdchess
 ====================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Table of Contents
 
-
+   readme
+   
 
 Indices and tables
 ==================
@@ -18,3 +19,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
