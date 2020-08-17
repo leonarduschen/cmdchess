@@ -1,15 +1,21 @@
 cmdchess
 ========
-A Windows command line application to play chess using the command prompt.
+A Windows command line application to play chess (specifically) using the command prompt.
 
 Overview
 --------
-This project is still in progress and is expected to be completed in a few days.
+Note: This project is still a work in progress and errors are expected to be fixed in a few days.
 
-Upcoming featues
+This project aims to serve as the go-to command line chess application for Windows users. As more and more windows users are becoming power users, a light-weight CLI chess application provides great convenience to access chess puzzles - which hopefully enables chess enthusiasts to practice more often and improve their tacticical abilities.
 
+Since most command-line chess applications are catered to Unicode consoles (and somewhat alienating Windows users), the project has been developed to cater to ASCII consoles - and therefore can be run in what Windows users are familiar with: ``cmd.exe``
+
+Upcoming core featues
+
+* Short-algebraic notation to input moves
 * Popular chess variants (e.g. chess960, horde)
-* Puzzles
+* Puzzles from databases
+* Popular games history
 
 Errors
 
@@ -17,30 +23,23 @@ Errors
 * Check and checkmate
 * Promotion
 
-Source location
-~~~~~~~~~~~~~~~
+**Source location**
+
 Hosted on GitHub: https://github.com/leonarduschen/cmdchess
 
-Installation
-~~~~~~~~~~~~
-Clone the project and in the folder run:
+**Installation**
 
-``pip install .``
+``pip install cmdchess``
 
 
 Quick Start
 -----------
-Launch app:
+Launch app: ``cmdchess``
 
-``cmdchess``
+Run on unicode console: ``cmdchess -utf``
 
-Run on unicode console:
+Help: ``cmdchess --help``
 
-``cmdchess -utf``
-
-Help:
-
-``cmdchess --help``
 
 License
 -------
