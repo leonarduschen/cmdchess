@@ -37,6 +37,7 @@ Future
 ------
 This package is open sourced under the MIT license.
 
-Upcoming featues:
+Upcoming featues
+
 * Popular chess variants (e.g. chess960, horde)
 * Puzzles
