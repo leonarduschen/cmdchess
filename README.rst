@@ -42,8 +42,6 @@ Help:
 
 ``cmdchess --help``
 
-.. image:: docs/ascii.jpg
-
 License
 -------
 This package is open sourced under the MIT license.
