@@ -10,7 +10,7 @@ This project aims to serve as the go-to command line chess application for Windo
 
 Since most command-line chess applications are catered to Unicode consoles (and somewhat alienating Windows users), the project has been developed to cater to ASCII consoles - and therefore can be run in what Windows users are familiar with: ``cmd.exe``
 
-.. image:: docs/ASCII.jpg
+.. image:: docs/_static/ASCII.jpg
 
 Upcoming core featues
 
