@@ -202,7 +202,7 @@ def to_algebraic(cartesian):
         7: 'G',
         8: 'H'}
 
-    files = mapper[cartesian[0]]
-    rank = str(cartesian[1])
+    file_ = mapper[cartesian[0]]
+    rank_ = str(cartesian[1])
 
-    return files + rank
+    return file_ + rank_
