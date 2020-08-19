@@ -41,7 +41,9 @@ class Variant(ABC):
             Algebraic coordinate of the destination square
 
         """
-        if not self._isvalidmove(from_, to_):
+        if not (from_ in self.board.keys() or to_ in self.board.keys()):
+            raise MoveException("Invalid keys!")
+        elif not self._isvalidmove(from_, to_):
             raise MoveException("Invalid move!")
         else:
             self.board[to_].occupant = self.board[from_].occupant
@@ -50,6 +52,9 @@ class Variant(ABC):
 
     @abstractmethod
     def _isvalidmove(self, from_, to_):
+        """Check whether a move is valid
+
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -72,12 +77,12 @@ class Standard(Variant):
     def _isvalidmove(self, from_, to_):
         if self.board[from_].occupant is None:
             print("Moving from empty square")
-            return False  # moving from empty square
+            return False
         piece = self.board[from_].occupant
 
         if piece.color != self.to_move:
             print("Wrong color")
-            return False  # wrong piece color
+            return False
 
         diff = (
             to_cartesian(to_)[0] - to_cartesian(from_)[0],
@@ -86,21 +91,58 @@ class Standard(Variant):
 
         if self.board[to_].occupant is not None:
             if piece.color == self.board[to_].occupant.color:
-                print("Friendly attack")
-                return False  # friendly attack
+                print("Cannot capture friendly")
+                return False
 
             if diff not in piece.get_captures():
                 print("Invalid piece capture")
-                return False  # invalid capture
+                return False
 
             if not piece.hopping:
-                pass
+                for sqr in self._getpath(from_, to_):
+                    if self.board[to_algebraic(sqr)].occupant is not None:
+                        print("Move blocked by other pieces")
+                        return False
 
         if diff not in piece.get_moves():
             print("Invalid piece move")
-            return False  # invalid move
+            return False
 
         return True
+
+    def _getpath(self, from_, to_):
+        """Get the path from_ to to_ (excl.)
+
+        """
+        if from_ == to_:
+            return []
+
+        hor0, ver0 = to_cartesian(from_)
+        hor1, ver1 = to_cartesian(to_)
+
+        verstep = int((ver0 < ver1) - (ver0 > ver1))
+        horstep = int((hor0 < hor1) - (hor0 > hor1))
+
+        # vertical move
+        if hor1 == hor0:
+            ver_range = list(range(ver0 + verstep, ver1, verstep))
+            path = [(hor0, ver) for ver in ver_range]
+            return path
+
+        # horizontal move
+        if ver1 == ver0:
+            hor_range = list(range(hor0 + horstep, hor1, horstep))
+            path = [(hor, ver0) for hor in hor_range]
+            return path
+
+        # diagonal move
+        if (ver1 - ver0) == (hor1 - hor0):
+            ver_range = list(range(ver0 + verstep, ver1, verstep))
+            hor_range = list(range(hor0 + horstep, hor1, horstep))
+            path = [(hor, ver) in zip(hor_range, ver_range)]
+            return path
+
+        return []
 
     def isfinished(self):
         return False
