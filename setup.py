@@ -1,7 +1,3 @@
-"""Setuptools based setup module.
-
-"""
-
 from setuptools import setup, find_packages
 
 with open("README.rst") as fh:
@@ -17,7 +13,12 @@ setup(
     author_email='leonardus.chen@gmail.com',
     url='https://github.com/leonarduschen/cmdchess',
     license='MIT',
-    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=['colorama>=0.4.3'],
+    tests_require=['pytest'],
+    packages=find_packages(
+        exclude=(
+            'tests',
+            'docs')),
     entry_points={
         'console_scripts': [
             'cmdchess=cmdchess:playchess',
