@@ -162,7 +162,54 @@ class Board:
             def wrapper(x): return x
 
         return [wrapper(key) for key, value in self.items()
-                if value.occupant.filter_occupant(**kwargs)]
+                if value.filter_occupant(**kwargs)]
+
+    def get_path(self, from_, to_, cartesian=True):
+        """Get the path from_ to to_ (excl.)
+
+        """
+        if cartesian:
+            def wrapper(x): return x
+        else:
+            wrapper = to_algebraic
+
+        if from_ == to_:
+            return []
+
+        hor0, ver0 = to_cartesian(from_)
+        hor1, ver1 = to_cartesian(to_)
+
+        verstep = int((ver0 < ver1) - (ver0 > ver1))
+        horstep = int((hor0 < hor1) - (hor0 > hor1))
+
+        # vertical move
+        if hor1 == hor0:
+            ver_range = list(range(ver0 + verstep, ver1, verstep))
+            path = [wrapper((hor0, ver)) for ver in ver_range]
+            return path
+
+        # horizontal move
+        if ver1 == ver0:
+            hor_range = list(range(hor0 + horstep, hor1, horstep))
+            path = [wrapper((hor, ver0)) for hor in hor_range]
+            return path
+
+        # diagonal move
+        if (ver1 - ver0) == (hor1 - hor0):
+            ver_range = list(range(ver0 + verstep, ver1, verstep))
+            hor_range = list(range(hor0 + horstep, hor1, horstep))
+            path = [wrapper((hor, ver)) for hor, ver in zip(hor_range, ver_range)]
+            return path
+        return []
+
+    def isblocked(self, from_, to_):
+        """Check whether the path of a move is blocked
+
+        """
+        for sqr in self.get_path(from_, to_, cartesian=False):
+            if self[sqr].occupant is not None:
+                return True
+        return False
 
     def display_layout(self):
         """Display current state of the board

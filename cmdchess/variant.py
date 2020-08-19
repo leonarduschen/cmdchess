@@ -23,6 +23,7 @@ class Variant(ABC):
         self.board = Board()
         self._initialize_position()
         self.to_move = 'W'
+        self.is_checked = False
 
     def change_color(self):
         if self.to_move == 'W':
@@ -46,16 +47,81 @@ class Variant(ABC):
         elif not self._isvalidmove(from_, to_):
             raise MoveException("Invalid move!")
         else:
+            if self._ischeckopponent(from_, to_):
+                self.is_checked = True
+
             self.board[to_].occupant = self.board[from_].occupant
             self.board[from_].occupant = None
             self.change_color()
 
-    @abstractmethod
     def _isvalidmove(self, from_, to_):
         """Check whether a move is valid
 
         """
-        raise NotImplementedError()
+        if self.board[from_].occupant is None:
+            print("Moving from empty square")
+            return False
+        piece = self.board[from_].occupant
+
+        if piece.color != self.to_move:
+            print("Wrong color")
+            return False
+
+        if self.is_checked:
+            if piece.notation != 'K':
+                print("King is checked!")
+                return False
+
+        diff = (
+            to_cartesian(to_)[0] - to_cartesian(from_)[0],
+            to_cartesian(to_)[1] - to_cartesian(from_)[1]
+        )
+        if not piece.hopping:
+            if self.board.isblocked(from_, to_):
+                print("Move blocked by other pieces")
+                return False
+
+        if self.board[to_].occupant is not None:
+            if piece.color == self.board[to_].occupant.color:
+                print("Cannot capture friendly")
+                return False
+
+            if diff not in piece.get_captures():
+                print("Invalid piece capture")
+                return False
+
+        if diff not in piece.get_moves():
+            print("Invalid piece move")
+            return False
+
+        return True
+
+    def _ischeckopponent(self, from_, to_):
+        """Check whether a move checks the opponent's king
+
+        """
+        opp_color = 'W' if self.to_move == 'B' else 'B'
+        opp_king_pos = self.board.get_occupants(color=opp_color, notation='K')[0]
+
+        diff = (
+            opp_king_pos[0] - to_cartesian(to_)[0],
+            opp_king_pos[1] - to_cartesian(to_)[1]
+        )
+
+        if diff in self.board[from_].occupant.get_captures():
+            if self.board[from_].occupant.hopping:
+                return True
+
+            if not self.board.isblocked(to, opp_king_poss):
+                return True
+
+        return False
+
+    def _ispinnedmove(self, from_, to_):
+        """Check whether a pinned piece is being moved
+
+        """
+        return False
 
     @abstractmethod
     def isfinished(self):
@@ -73,75 +139,6 @@ class Standard(Variant):
     """Standard chess game
 
     """
-
-    def _isvalidmove(self, from_, to_):
-        if self.board[from_].occupant is None:
-            print("Moving from empty square")
-            return False
-        piece = self.board[from_].occupant
-
-        if piece.color != self.to_move:
-            print("Wrong color")
-            return False
-
-        diff = (
-            to_cartesian(to_)[0] - to_cartesian(from_)[0],
-            to_cartesian(to_)[1] - to_cartesian(from_)[1]
-        )
-
-        if not piece.hopping:
-            for sqr in self._getpath(from_, to_):
-                if self.board[to_algebraic(sqr)].occupant is not None:
-                    print("Move blocked by other pieces")
-                    return False
-
-        if self.board[to_].occupant is not None:
-            if piece.color == self.board[to_].occupant.color:
-                print("Cannot capture friendly")
-                return False
-
-            if diff not in piece.get_captures():
-                print("Invalid piece capture")
-                return False
-
-        if diff not in piece.get_moves():
-            print("Invalid piece move")
-            return False
-
-        return True
-
-    def _getpath(self, from_, to_):
-        """Get the path from_ to to_ (excl.)
-
-        """
-        if from_ == to_:
-            return []
-
-        hor0, ver0 = to_cartesian(from_)
-        hor1, ver1 = to_cartesian(to_)
-
-        verstep = int((ver0 < ver1) - (ver0 > ver1))
-        horstep = int((hor0 < hor1) - (hor0 > hor1))
-
-        # vertical move
-        if hor1 == hor0:
-            ver_range = list(range(ver0 + verstep, ver1, verstep))
-            path = [(hor0, ver) for ver in ver_range]
-            return path
-
-        # horizontal move
-        if ver1 == ver0:
-            hor_range = list(range(hor0 + horstep, hor1, horstep))
-            path = [(hor, ver0) for hor in hor_range]
-            return path
-
-        # diagonal move
-        if (ver1 - ver0) == (hor1 - hor0):
-            ver_range = list(range(ver0 + verstep, ver1, verstep))
-            hor_range = list(range(hor0 + horstep, hor1, horstep))
-            path = [(hor, ver) for hor,ver in zip(hor_range, ver_range)]
-            return path
-        return []
 
     def isfinished(self):
         return False
