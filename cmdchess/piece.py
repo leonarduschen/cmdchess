@@ -164,7 +164,7 @@ class Queen(Piece):
             [(0, j) for j in ver]
         )
         combination = set(combination)
-        combination = combination.remove((0, 0))
+        combination.remove((0, 0))
         return combination
 
     def get_captures(self):
@@ -178,7 +178,7 @@ class Queen(Piece):
             [(0, j) for j in ver]
         )
         combination = set(combination)
-        combination = combination.remove((0, 0))
+        combination.remove((0, 0))
         return combination
 
 
@@ -200,8 +200,9 @@ class Bishop(Piece):
         ver = [-8, -7, -6, -5, -4, -3, -
                2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
         combination = [(i, j) for i, j in zip(hor, ver)]
+        combination += [(-i,j) for i, j in zip(hor, ver)]
         combination = set(combination)
-        combination = combination.remove((0, 0))
+        combination.remove((0, 0))
         return combination
 
     def get_captures(self):
@@ -211,7 +212,7 @@ class Bishop(Piece):
                2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
         combination = [(i, j) for i, j in zip(hor, ver)]
         combination = set(combination)
-        combination = combination.remove((0, 0))
+        combination.remove((0, 0))
         return combination
 
 
