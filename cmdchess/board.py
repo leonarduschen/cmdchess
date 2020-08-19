@@ -45,6 +45,27 @@ class Square:
             return background + '   '
         return background + f' {str(self.occupant)} '
 
+    def filter_occupant(self, **kwargs):
+        """Return the occupant of the square with attribute filtering conditions
+
+        Parameters
+        ----------
+        **kwargs
+            Attribute of the occupant to check for
+
+        Returns
+        -------
+        Piece-object
+            Return the occupant if it meets the condition
+
+        """
+        if self.occupant is None:
+            return None
+        for key, value in kwargs.items():
+            if value == getattr(self.occupant, key):
+                return self.occupant
+        return None
+
     @property
     def position(self):
         """str: Algebraic coordinate of current position (e.g. 'A1')
@@ -119,23 +140,29 @@ class Board:
         for attribute in self.__slots__:
             yield attribute, getattr(self, attribute)
 
-    def get_occupants(self, cartesian=True):
+    def get_occupants(self, cartesian=True, **kwargs):
         """Get current occupants and its corresponding keys
 
         Parameters
         ----------
         cartesian: bool, optional
             Whether to return key in its cartesian representation
+        **kwargs
+            Attribute of the occupant to check for
 
         Returns
         -------
         list
-            Current occupants and its corresponding keys
+            Keys of the squares whose occupants meet the filtering conditions
 
         """
         if cartesian:
-            return [(to_cartesian(key), value.occupant) for key, value in self.items()]
-        return [(key, value.occupant) for key, value in self.items()]
+            wrapper = to_cartesian
+        else:
+            def wrapper(x): return x
+
+        return [wrapper(key) for key, value in self.items()
+                if value.occupant.filter_occupant(**kwargs)]
 
     def display_layout(self):
         """Display current state of the board
