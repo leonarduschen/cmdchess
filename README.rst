@@ -20,9 +20,7 @@ Upcoming core featues
 * Popular games history
 
 Errors
-
-* Blocked moves exceptions left uncatched
-* Check and checkmate
+* Checkmate
 * Promotion
 
 **Source location**
