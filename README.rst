@@ -20,6 +20,7 @@ Upcoming core featues
 * Popular games history
 
 Errors
+
 * Checkmate
 * Promotion
 
