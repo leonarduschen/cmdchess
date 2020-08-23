@@ -112,7 +112,7 @@ class Variant(ABC):
             if self.board[from_].occupant.hopping:
                 return True
 
-            if not self.board.isblocked(to, opp_king_poss):
+            if not self.board.isblocked(to_, opp_king_pos):
                 return True
 
         return False
