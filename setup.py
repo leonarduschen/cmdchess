@@ -15,6 +15,7 @@ setup(
     license='MIT',
     install_requires=['colorama>=0.4.3'],
     tests_require=['pytest'],
+    setup_requires=['flake8'],
     packages=find_packages(
         exclude=(
             'tests',
