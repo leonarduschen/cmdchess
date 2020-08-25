@@ -16,7 +16,7 @@ args = parser.parse_args()
 
 def playchess():
     """Run on execution
-    
+
     """
     if args.unicode:
         main(ASCII=False)

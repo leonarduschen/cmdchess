@@ -4,7 +4,7 @@
 
 from abc import ABC, abstractmethod
 from .piece import King, Queen, Bishop, Knight, Rook, Pawn
-from .board import Board, to_cartesian, to_algebraic
+from .board import Board, to_cartesian
 
 
 class MoveException(Exception):
