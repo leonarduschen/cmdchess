@@ -1,6 +1,5 @@
 todo
 .vscode
-throwaway*
 .pytest-cache/
 
 # Byte-compiled / optimized / DLL files
