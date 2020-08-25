@@ -2,6 +2,20 @@ cmdchess
 ========
 A Windows command line application to play chess (specifically) using the command prompt.
 
+.. image:: https://badge.fury.io/py/cmdchess.svg
+    :target: https://badge.fury.io/py/cmdchess
+
+.. image:: https://travis-ci.org/leonarduschen/cmdchess.svg?branch=master
+    :target: https://travis-ci.org/leonarduschen/cmdchess
+
+.. image:: https://readthedocs.org/projects/cmdchess/badge/?version=latest
+    :target: https://cmdchess.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+Documentation
+-------------
+https://cmdchess.readthedocs.io/en/latest/
+
 Overview
 --------
 Note: This project is still a work in progress and errors are expected to be fixed in a few days.
@@ -24,11 +38,13 @@ Errors
 * Checkmate
 * Promotion
 
-**Source location**
+Source location
+~~~~~~~~~~~~~~~
 
 Hosted on GitHub: https://github.com/leonarduschen/cmdchess
 
-**Installation**
+Installation
+~~~~~~~~~~~~
 
 ``pip install cmdchess``
 
