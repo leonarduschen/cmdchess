@@ -107,14 +107,14 @@ def test_rook_properties():
     assert not rook.hopping
 
 
-def test_rook_captures():
+def test_rook_moves_captures():
     rook = Rook('B')
 
     assert (0, 0) not in rook.get_moves()
     assert (1, 1) not in rook.get_moves()
     assert (8, 0) not in rook.get_moves()
     assert (4, 0) in rook.get_moves()
-    assert (7, 7) in rook.get_moves()
+    assert (0, 7) in rook.get_moves()
     assert rook.get_moves() == rook.get_captures()
 
 

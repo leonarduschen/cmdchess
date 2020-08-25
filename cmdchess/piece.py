@@ -133,12 +133,7 @@ class King(Piece):
         return combination
 
     def get_captures(self):
-        hor = [-1, 0, 1]
-        ver = [-1, 0, 1]
-        combination = [(i, j) for i in hor for j in ver]
-        combination = set(combination)
-        combination.remove((0, 0))
-        return combination
+        return self.get_moves()
 
 
 class Queen(Piece):
@@ -154,10 +149,10 @@ class Queen(Piece):
         return False
 
     def get_moves(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+        hor = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+        ver = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
         combination = (
             [(i, j) for i, j in zip(hor, ver)] +
             [(i, 0) for i in hor] +
@@ -168,18 +163,7 @@ class Queen(Piece):
         return combination
 
     def get_captures(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        combination = (
-            [(i, j) for i, j in zip(hor, ver)] +
-            [(i, 0) for i in hor] +
-            [(0, j) for j in ver]
-        )
-        combination = set(combination)
-        combination.remove((0, 0))
-        return combination
+        return self.get_moves()
 
 
 class Bishop(Piece):
@@ -195,10 +179,10 @@ class Bishop(Piece):
         return False
 
     def get_moves(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+        hor = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+        ver = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
         combination = [(i, j) for i, j in zip(hor, ver)]
         combination += [(-i, j) for i, j in zip(hor, ver)]
         combination = set(combination)
@@ -206,14 +190,7 @@ class Bishop(Piece):
         return combination
 
     def get_captures(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        combination = [(i, j) for i, j in zip(hor, ver)]
-        combination = set(combination)
-        combination.remove((0, 0))
-        return combination
+        return self.get_moves()
 
 
 class Knight(Piece):
@@ -235,10 +212,7 @@ class Knight(Piece):
         return combination
 
     def get_captures(self):
-        combination = [(1, 2), (2, 1), (-1, 2), (-2, 1),
-                       (1, -2), (2, -1), (-1, -2), (-2, -1)]
-        combination = set(combination)
-        return combination
+        return self.get_moves()
 
 
 class Rook(Piece):
@@ -254,24 +228,17 @@ class Rook(Piece):
         return False
 
     def get_moves(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+        hor = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
+        ver = [-7, -6, -5, -4, -3, -
+               2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
         combination = [(i, 0) for i in hor] + [(0, j) for j in ver]
         combination = set(combination)
         combination.remove((0, 0))
         return combination
 
     def get_captures(self):
-        hor = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        ver = [-8, -7, -6, -5, -4, -3, -
-               2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-        combination = [(i, 0) for i in hor] + [(0, j) for j in ver]
-        combination = set(combination)
-        combination.remove((0, 0))
-        return combination
+        return self.get_moves()
 
 
 class Pawn(Piece):
