@@ -16,13 +16,6 @@ setup(
     install_requires=['colorama>=0.4.3'],
     tests_require=['pytest'],
     setup_requires=['pytest-runner'],
-    packages=find_packages(
-        exclude=(
-            'tests',
-            'docs')),
-    entry_points={
-        'console_scripts': [
-            'cmdchess=cmdchess:playchess',
-        ],
-    },
+    packages=find_packages(exclude=('tests', 'docs')),
+    entry_points={'console_scripts': ['cmdchess=cmdchess:play']},
 )
