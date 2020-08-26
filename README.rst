@@ -8,6 +8,9 @@ A Windows command line application to play chess (specifically) using the comman
 .. image:: https://travis-ci.org/leonarduschen/cmdchess.svg?branch=master
     :target: https://travis-ci.org/leonarduschen/cmdchess
 
+.. image:: https://codecov.io/gh/leonarduschen/cmdchess/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/leonarduschen/cmdchess
+
 .. image:: https://readthedocs.org/projects/cmdchess/badge/?version=latest
     :target: https://cmdchess.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status

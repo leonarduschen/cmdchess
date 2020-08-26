@@ -5,7 +5,7 @@ with open("README.rst") as fh:
 
 setup(
     name='cmdchess',
-    version='0.1.2',
+    version='0.1.3',
     description='A Windows command line application to play chess (specifically) using the command prompt.',
     long_description=long_description,
     long_description_content_type='text/x-rst',
