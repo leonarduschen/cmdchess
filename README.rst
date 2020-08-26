@@ -24,7 +24,7 @@ This project aims to serve as the go-to command line chess application for Windo
 
 Since most command-line chess applications are catered to Unicode consoles (and somewhat alienating Windows users), the project has been developed to cater to ASCII consoles - and therefore can be run in what Windows users are familiar with: ``cmd.exe``
 
-.. image:: docs/_static/ASCII.jpg
+.. image:: https://raw.githubusercontent.com/leonarduschen/cmdchess/master/docs/_static/ASCII.jpg
 
 Upcoming core featues
 
@@ -54,6 +54,8 @@ Quick Start
 Launch app: ``cmdchess``
 
 Run on unicode console: ``cmdchess -utf``
+
+Run with yellow board color: ``cmdchess -y``
 
 Help: ``cmdchess --help``
 
