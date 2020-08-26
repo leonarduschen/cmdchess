@@ -3,35 +3,31 @@
 """
 
 import os
-
+from colorama import Back
 from .variant import Standard, MoveException
-from .config import configurations
+from .config import configurations, UNICODE, ASCII
 
 
-def main(ASCII=True):
+def main(encoding, board_color):
     """Run game
 
     Parameters
     ----------
-    ASCII: bool, optional
-        Determine whether to run in ASCII or unicode encoding format
+    encoding: {'ASCII','UNICODE'}
+        Determine whether to run in unicode encoding
+    board_color: {'CYAN','YELLOW'}
+        Select board color
 
     """
-    if ASCII:
-        configurations.symbols = {
-            'WK': 'K',
-            'WQ': 'Q',
-            'WB': 'B',
-            'WN': 'N',
-            'WR': 'R',
-            'WP': chr(9650),
-            'BK': 'K',
-            'BQ': 'Q',
-            'BB': 'B',
-            'BN': 'N',
-            'BR': 'R',
-            'BP': chr(9650)
-        }
+    if encoding == 'ASCII':
+        configurations.symbols = ASCII
+    elif encoding == 'UNICODE':
+        configurations.symbols = UNICODE
+
+    if board_color == 'cyan':
+        configurations.lightsqr = Back.LIGHTCYAN_EX
+    elif board_color == 'yellow':
+        configurations.lightsqr = Back.YELLOW
 
     game = Standard()
     while True:
