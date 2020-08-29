@@ -32,6 +32,7 @@ def test_king_properties():
     king = King('B')
 
     assert king.notation == 'K'
+    assert repr(king) == 'BK'
     assert not king.hopping
 
 
@@ -50,6 +51,7 @@ def test_queen_properties():
     queen = Queen('W')
 
     assert queen.notation == 'Q'
+    assert repr(queen) == 'WQ'
     assert not queen.hopping
 
 
@@ -68,6 +70,7 @@ def test_bishop_properties():
     bishop = Bishop('W')
 
     assert bishop.notation == 'B'
+    assert repr(bishop) == 'WB'
     assert not bishop.hopping
 
 
@@ -86,6 +89,7 @@ def test_knight_properties():
     knight = Knight('B')
 
     assert knight.notation == 'N'
+    assert repr(knight) == 'BN'
     assert knight.hopping
 
 
@@ -104,6 +108,7 @@ def test_rook_properties():
     rook = Rook('B')
 
     assert rook.notation == 'R'
+    assert repr(rook) == 'BR'
     assert not rook.hopping
 
 
@@ -122,23 +127,33 @@ def test_pawn_properties():
     pawn = Pawn('B')
 
     assert pawn.notation == 'P'
+    assert repr(pawn) == 'BP'
     assert not pawn.hopping
     assert pawn.double_advance
 
 
 def test_pawn_moves_captures():
-    pawn = Pawn('B')
+    pawn_black = Pawn('B')
+    pawn_white = Pawn('W')
 
-    assert (0, 0) not in pawn.get_moves()
-    assert (0, -1) in pawn.get_moves()
+    assert (0, 0) not in pawn_black.get_moves()
+    assert (0, 0) not in pawn_white.get_moves()
+    assert (0, -1) in pawn_black.get_moves()
+    assert (0, 1) in pawn_white.get_moves()
 
     # Double advance
-    assert (0, -2) in pawn.get_moves()
-    pawn.double_advance = False
-    assert (0, -2) not in pawn.get_moves()
+    assert (0, -2) in pawn_black.get_moves()
+    assert (0, 2) in pawn_white.get_moves()
+    pawn_black.double_advance = False
+    pawn_white.double_advance = False
+    assert (0, -2) not in pawn_black.get_moves()
+    assert (0, 2) not in pawn_white.get_moves()
 
-    assert (0, 0) not in pawn.get_captures()
-    assert (-1, -1) in pawn.get_captures()
-    assert (1, -1) in pawn.get_captures()
+    assert (0, 0) not in pawn_black.get_captures()
+    assert (0, 0) not in pawn_white.get_captures()
+    assert (-1, -1) in pawn_black.get_captures()
+    assert (-1, 1) in pawn_white.get_captures()
+    assert (1, -1) in pawn_black.get_captures()
+    assert (1, 1) in pawn_white.get_captures()
 
-    assert not any([move in pawn.get_captures() for move in pawn.get_moves()])
+    assert not any([move in pawn_black.get_captures() for move in pawn_black.get_moves()])

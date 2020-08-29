@@ -4,6 +4,13 @@
    contain the root `toctree` directive.
 
 .. include:: readme.rst
+
+Package Contents
+================
+.. toctree::
+   :maxdepth: 4
+
+   modules.rst
    
 
 Indices and tables
