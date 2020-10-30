@@ -8,6 +8,13 @@ from .variant import Standard, MoveException
 from .config import configurations, UNICODE, ASCII
 
 
+def clear():
+    """Clear command that works on Windows and UNIX systems
+
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def main(encoding, board_color):
     """Run game
 
@@ -31,7 +38,7 @@ def main(encoding, board_color):
 
     game = Standard()
     while True:
-        os.system('cls')
+        clear()
         game.board.display_layout()
         print(" ")
         while True:
