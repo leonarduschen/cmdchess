@@ -1,6 +1,9 @@
+.. role:: strike
+    :class: strike
+
 cmdchess
 ========
-A Windows command line application to play chess (specifically) using the command prompt.
+A cross-platform command line chess application that supports multiple character encodings.
 
 .. image:: https://badge.fury.io/py/cmdchess.svg
     :target: https://badge.fury.io/py/cmdchess
@@ -19,13 +22,14 @@ Documentation
 -------------
 https://cmdchess.readthedocs.io/en/latest/
 
+
 Overview
 --------
 Note: This project is still a work in progress and errors are expected to be fixed in a few days.
 
-This project aims to serve as the go-to command line chess application for Windows users. As more and more windows users are becoming power users, a light-weight CLI chess application provides great convenience to access chess puzzles - which hopefully enables chess enthusiasts to practice more often and improve their tacticical abilities.
+This project aims to serve as the go-to command line chess application :strike:`for Windows users`. As more and more PC users are becoming power users, a light-weight CLI chess application provides great convenience to access chess puzzles - which hopefully enables chess enthusiasts to practice more often and improve their tacticical abilities.
 
-Since most command-line chess applications are catered to Unicode consoles (and somewhat alienating Windows users), the project has been developed to cater to ASCII consoles - and therefore can be run in what Windows users are familiar with: ``cmd.exe``
+Since most command-line chess applications are catered to Unicode consoles, the project has been developed to cater to ASCII consoles - and therefore can be run in ``cmd.exe`` on Windows among many others.
 
 .. image:: https://raw.githubusercontent.com/leonarduschen/cmdchess/master/docs/_static/ASCII.jpg
 
